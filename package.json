@@ -9,7 +9,8 @@
     "test:phase1": "node tests/test_phase1.js",
     "test:phase2": "node tests/test_phase2.js",
     "test:phase3": "node tests/test_phase3.js",
-    "test:phase4": "node tests/test_phase4.js"
+    "test:phase4": "node tests/test_phase4.js",
+    "reset-data": "node scripts/reset.js"
   },
   "keywords": [
     "sipas",
