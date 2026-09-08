@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khảo sát sự hài lòng - UBND Phường Tùng Thiện</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: '#1d4ed8', // blue-700
+                        secondary: '#f59e0b', // amber-500
+                        surface: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f1f5f9;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+        
+        .option-card {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .option-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        input[type="radio"]:checked + div, input[type="checkbox"]:checked + div {
+            border-color: #1d4ed8;
+            background-color: #eff6ff;
+        }
+        input[type="radio"]:checked + div .icon-circle, input[type="checkbox"]:checked + div .icon-box {
+            background-color: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+        input[type="radio"]:checked + div .icon-circle::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            margin: 4px auto;
+        }
+        input[type="checkbox"]:checked + div .icon-box::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .matrix-table thead { display: none; }
+            .matrix-table tr {
+                display: block;
+                margin-bottom: 1.5rem;
+                background: white;
+                border-radius: 0.75rem;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                padding: 1rem;
+                border: 1px solid #e2e8f0;
+            }
+            .matrix-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.75rem 0;
+                border-bottom: 1px solid #f1f5f9;
+            }
+            .matrix-table td:first-child {
+                font-weight: 600;
+                display: block;
+                border-bottom: none;
+                margin-bottom: 0.5rem;
+                color: #1e293b;
+            }
+            .matrix-table td::before {
+                content: attr(data-label);
+                font-size: 0.875rem;
+                color: #64748b;
+                font-weight: 500;
+            }
+            
+            .matrix-table tr.group-header, .matrix-table tr.sub-group-header {
+                display: block;
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                margin-bottom: 0.5rem;
+                background: transparent;
+            }
+            .matrix-table tr.group-header td {
+                background: #1e40af; /* blue-800 */
+                color: white;
+                font-weight: bold;
+                padding: 0.875rem 1rem;
+                border-radius: 0.5rem;
+                display: block;
+                border: none;
+                text-align: left;
+            }
+            .matrix-table tr.sub-group-header td {
+                background: #eff6ff; /* blue-50 */
+                color: #1d4ed8; /* blue-700 */
+                font-weight: bold;
+                padding: 0.75rem 1rem;
+                border-radius: 0.5rem;
+                display: block;
+                border: none;
+                text-align: left;
+            }
+            .matrix-table tr.group-header td::before, .matrix-table tr.sub-group-header td::before { content: none; }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-container {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2.5rem;
+        }
+        @media (max-width: 768px) {
+            .section-container { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center gap-4">
+            <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white shadow-md flex-shrink-0">
+                <i class="fa-solid fa-landmark text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-lg md:text-xl font-bold text-slate-800 leading-tight">UBND PHƯỜNG TÙNG THIỆN</h1>
+                <p class="text-sm text-slate-500 font-medium">Khảo sát sự hài lòng của người dân (SIPAS)</p>
+            </div>
+        </div>
+        <!-- Scroll Progress Bar -->
+        <div class="h-1.5 w-full bg-slate-100">
+            <div id="scroll-progress" class="h-1.5 bg-primary w-0"></div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-8">
+        
+        <form id="survey-form">
+            <div class="text-center mb-10 fade-in-section is-visible">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4 uppercase">Phiếu Khảo Sát Ý Kiến</h2>
+                <h3 class="text-xl font-semibold text-primary mb-4">Sự hài lòng của người dân đối với sự phục vụ của cơ quan hành chính nhà nước năm 2026</h3>
+                <p class="text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                    Xin trân trọng cảm ơn Ông/Bà đã tham gia trả lời khảo sát. Vui lòng chọn phương án trả lời tương ứng với đánh giá, cảm nhận của Ông/Bà.
+                </p>
+            </div>
+
+            <div class="section-container fade-in-section">
+                <div class="mb-6 border-b border-slate-100 pb-4">
+                    <h2 class="text-xl font-bold text-primary flex items-center gap-2">
+                        <i class="fa-solid fa-address-card"></i> PHẦN A: THÔNG TIN CÁ NHÂN NGƯỜI TRẢ LỜI KHẢO SÁT
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block font-semibold mb-3">Giới tính:</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="relative option-card block"><input type="radio" name="gender" value="Nam" class="peer sr-only" required><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300"></div><span class="font-medium">1. Nam</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="gender" value="Nữ" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300"></div><span class="font-medium">2. Nữ</span></div></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-semibold mb-3">Dân tộc:</label>
+                        <div class="grid grid-cols-2 gap-3 mb-2">
+                            <label class="relative option-card block"><input type="radio" name="ethnicity" value="Kinh" class="peer sr-only" required><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300"></div><span class="font-medium">1. Kinh</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="ethnicity" value="Khác" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300"></div><span class="font-medium">2. Khác</span></div></label>
+                        </div>
+                        <input type="text" name="ethnicity_other" placeholder="Nếu khác, xin viết cụ thể..." class="w-full p-2.5 border-2 border-slate-200 rounded-xl outline-none text-sm focus:border-primary">
+                    </div>
+                    
+                    <div class="md:col-span-2">
+                        <label class="block font-semibold mb-3">Độ tuổi:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                            <label class="relative option-card block"><input type="radio" name="age" value="18-24" class="peer sr-only" required><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">1. 18-24 tuổi</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="age" value="25-34" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">2. 25-34 tuổi</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="age" value="35-49" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">3. 35-49 tuổi</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="age" value="50-60" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">4. 50-60 tuổi</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="age" value=">60" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">5. Trên 60 tuổi</span></div></label>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block font-semibold mb-3">Trình độ học vấn:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-2">
+                            <label class="relative option-card block"><input type="radio" name="edu" value="1" class="peer sr-only" required><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">1. Tiểu học (cấp I)</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="edu" value="2" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">2. THCS (cấp II)</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="edu" value="3" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">3. THPT (cấp III)</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="edu" value="4" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">4. Dạy nghề TC/CĐ</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="edu" value="5" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">5. Đại học/ trên ĐH</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="edu" value="6" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">6. Khác</span></div></label>
+                        </div>
+                        <input type="text" name="edu_other" placeholder="Nếu khác, xin viết cụ thể..." class="w-full p-2.5 border-2 border-slate-200 rounded-xl outline-none text-sm focus:border-primary">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block font-semibold mb-3">Nghề nghiệp:</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3 mb-2">
+                            <label class="relative option-card block"><input type="radio" name="job" value="1" class="peer sr-only" required><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">1. Nghỉ hưu</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="job" value="2" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">2. Không đi làm (ở nhà)</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="job" value="3" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">3. Làm công việc tự do (không ký HĐLĐ)</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="job" value="4" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">4. Sinh viên</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="job" value="5" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">5. Làm việc tại tổ chức, DN trong lĩnh vực tư</span></div></label>
+                            <label class="relative option-card block"><input type="radio" name="job" value="6" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">6. Làm việc tại cơ quan, tổ chức, DN trong lĩnh vực công</span></div></label>
+                            <label class="relative option-card block md:col-span-2"><input type="radio" name="job" value="7" class="peer sr-only"><div class="p-3 border-2 border-slate-200 rounded-xl flex items-center gap-2"><div class="icon-circle w-4 h-4 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">7. Khác</span></div></label>
+                        </div>
+                        <input type="text" name="job_other" placeholder="Nếu khác, xin viết cụ thể..." class="w-full p-2.5 border-2 border-slate-200 rounded-xl outline-none text-sm focus:border-primary">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-container fade-in-section">
+                <div class="mb-6 border-b border-slate-100 pb-4">
+                    <h2 class="text-xl font-bold text-primary flex items-center gap-2">
+                        <i class="fa-solid fa-list-check"></i> PHẦN B: CÂU HỎI KHẢO SÁT
+                    </h2>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block font-semibold mb-4 text-slate-800">Câu 1. Xin Ông/Bà cho biết mức độ quan tâm theo dõi của Ông/Bà đối với các chính sách công trong bảng dưới đây (theo dõi thông qua cả hình thức đọc báo, nghe đài, xem trên ti vi, trên mạng internet)?</label>
+                    <p class="text-sm text-slate-500 mb-4 italic">("Chính sách" ở đây nói đến các quy định, chương trình, hành động của chính quyền, cơ quan hành chính nhà nước ở địa phương).</p>
+                    <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                        <table class="w-full text-left border-collapse matrix-table">
+                            <thead class="bg-slate-50 text-sm">
+                                <tr>
+                                    <th class="p-4 border-b border-r font-semibold text-slate-700 w-2/5">Chính sách</th>
+                                    <th class="p-2 border-b text-center font-medium">1. Không quan tâm theo dõi</th>
+                                    <th class="p-2 border-b text-center font-medium">2. Khá quan tâm theo dõi</th>
+                                    <th class="p-2 border-b text-center font-medium">3. Quan tâm theo dõi</th>
+                                    <th class="p-2 border-b text-center font-medium">4. Rất quan tâm theo dõi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <script>
+                                    const policies = [
+                                        "1. Chính sách phát triển kinh tế ở địa phương", 
+                                        "2. Chính sách khám, chữa bệnh ở địa phương", 
+                                        "3. Chính sách giáo dục phổ thông ở địa phương",
+                                        "4. Chính sách nước sinh hoạt ở địa phương", 
+                                        "5. Chính sách điện sinh hoạt ở địa phương", 
+                                        "6. Chính sách trật tự, an toàn xã hội ở địa phương",
+                                        "7. Chính sách giao thông đường bộ ở địa phương", 
+                                        "8. Chính sách an sinh, xã hội ở địa phương", 
+                                        "9. Chính sách cải cách hành chính ở địa phương"
+                                    ];
+                                    policies.forEach((policy, idx) => {
+                                        document.write(`
+                                        <tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors">
+                                            <td class="p-3 border-r md:border-b-0 border-slate-100 font-medium text-sm">${policy}</td>
+                                            <td class="p-3 text-center" data-label="1. Không quan tâm"><input type="radio" name="q1_${idx+1}" value="1" class="w-5 h-5 accent-primary" required></td>
+                                            <td class="p-3 text-center" data-label="2. Khá quan tâm"><input type="radio" name="q1_${idx+1}" value="2" class="w-5 h-5 accent-primary"></td>
+                                            <td class="p-3 text-center" data-label="3. Quan tâm"><input type="radio" name="q1_${idx+1}" value="3" class="w-5 h-5 accent-primary"></td>
+                                            <td class="p-3 text-center" data-label="4. Rất quan tâm"><input type="radio" name="q1_${idx+1}" value="4" class="w-5 h-5 accent-primary"></td>
+                                        </tr>
+                                        `);
+                                    });
+                                </script>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block font-semibold mb-3">Câu 2. Trong thời gian qua, Ông/Bà đã sử dụng kênh thông tin nào để theo dõi các chính sách nêu ở Câu 1? (Chọn nhiều)</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+                        <label class="relative option-card block"><input type="checkbox" name="q2" value="1" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-box w-5 h-5 rounded flex-shrink-0 border-2 border-slate-300"></div><span class="text-sm font-medium">1. Qua loa phát thanh phường.</span></div></label>
+                        <label class="relative option-card block"><input type="checkbox" name="q2" value="2" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-box w-5 h-5 rounded flex-shrink-0 border-2 border-slate-300"></div><span class="text-sm font-medium">2. Qua họp, sinh hoạt, thông báo tại khu dân cư.</span></div></label>
+                        <label class="relative option-card block"><input type="checkbox" name="q2" value="3" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-box w-5 h-5 rounded flex-shrink-0 border-2 border-slate-300"></div><span class="text-sm font-medium">3. Qua chính quyền, công chức.</span></div></label>
+                        <label class="relative option-card block"><input type="checkbox" name="q2" value="4" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-box w-5 h-5 rounded flex-shrink-0 border-2 border-slate-300"></div><span class="text-sm font-medium">4. Qua người thân, bạn bè.</span></div></label>
+                        <label class="relative option-card block"><input type="checkbox" name="q2" value="5" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-box w-5 h-5 rounded flex-shrink-0 border-2 border-slate-300"></div><span class="text-sm font-medium">5. Qua đài, ti vi, báo chí.</span></div></label>
+                        <label class="relative option-card block"><input type="checkbox" name="q2" value="6" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-box w-5 h-5 rounded flex-shrink-0 border-2 border-slate-300"></div><span class="text-sm font-medium">6. Qua mạng internet (Trang thông tin điện tử, cổng thông tin điện tử, báo điện tử, zalo, facebook...).</span></div></label>
+                        <label class="relative option-card block"><input type="checkbox" name="q2" value="7" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-box w-5 h-5 rounded flex-shrink-0 border-2 border-slate-300"></div><span class="text-sm font-medium">7. Qua hình thức khác (xin ghi cụ thể):</span></div></label>
+                    </div>
+                    <input type="text" name="q2_other" placeholder="Nếu khác, xin viết cụ thể..." class="w-full p-2.5 border-2 border-slate-200 rounded-xl outline-none text-sm focus:border-primary">
+                </div>
+
+                <div class="mb-8">
+                    <label class="block font-semibold mb-4 text-slate-800">Câu 3. Ông/Bà đánh giá mức độ phù hợp của các hình thức cơ quan nhà nước cung cấp thông tin về các chính sách nêu ở Câu 1 đối với bản thân Ông/Bà như thế nào?</label>
+                    <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                        <table class="w-full text-left border-collapse matrix-table">
+                            <thead class="bg-slate-50 text-sm">
+                                <tr>
+                                    <th class="p-4 border-b border-r font-semibold text-slate-700 w-2/5">Hình thức cung cấp</th>
+                                    <th class="p-2 border-b text-center font-medium">1. Không phù hợp</th>
+                                    <th class="p-2 border-b text-center font-medium">2. Khá phù hợp</th>
+                                    <th class="p-2 border-b text-center font-medium">3. Phù hợp</th>
+                                    <th class="p-2 border-b text-center font-medium">4. Rất phù hợp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <script>
+                                    const channels = [
+                                        "1. Cung cấp thông tin về các chính sách qua loa phát thanh phường.", 
+                                        "2. Cung cấp thông tin về các chính sách qua họp, sinh hoạt, thông báo tại khu dân cư.",
+                                        "3. Cung cấp thông tin về các chính sách qua chính quyền, công chức.", 
+                                        "4. Cung cấp thông tin về các chính sách qua người thân, bạn bè.",
+                                        "5. Cung cấp thông tin về các chính sách qua đài, ti vi, báo chí.", 
+                                        "6. Cung cấp thông tin về các chính sách qua mạng internet (Trang thông tin điện tử, báo điện tử, zalo, facebook...).", 
+                                        "7. Cung cấp thông tin về các chính sách qua hình thức khác."
+                                    ];
+                                    channels.forEach((ch, idx) => {
+                                        document.write(`
+                                        <tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors">
+                                            <td class="p-3 border-r md:border-b-0 border-slate-100 font-medium text-sm">${ch}</td>
+                                            <td class="p-3 text-center" data-label="1. Không PH"><input type="radio" name="q3_${idx+1}" value="1" class="w-5 h-5 accent-primary" required></td>
+                                            <td class="p-3 text-center" data-label="2. Khá PH"><input type="radio" name="q3_${idx+1}" value="2" class="w-5 h-5 accent-primary"></td>
+                                            <td class="p-3 text-center" data-label="3. Phù hợp"><input type="radio" name="q3_${idx+1}" value="3" class="w-5 h-5 accent-primary"></td>
+                                            <td class="p-3 text-center" data-label="4. Rất PH"><input type="radio" name="q3_${idx+1}" value="4" class="w-5 h-5 accent-primary"></td>
+                                        </tr>
+                                        `);
+                                    });
+                                </script>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block font-semibold mb-3">Câu 4. Trong thời gian tới, nếu cơ quan nhà nước tổ chức xin ý kiến người dân về chính sách nêu ở Câu 1, Ông/Bà có tham gia góp ý kiến không?</label>
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-3">
+                        <label class="relative option-card block"><input type="radio" name="q4" value="1" class="peer sr-only" required><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">1. Sẽ tham gia, nếu được xin ý kiến theo bất kỳ hình thức nào.</span></div></label>
+                        <label class="relative option-card block"><input type="radio" name="q4" value="2" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">2. Sẽ tham gia, nếu được xin ý kiến theo hình thức gửi phiếu xin ý kiến đến nhà, cơ quan.</span></div></label>
+                        <label class="relative option-card block"><input type="radio" name="q4" value="3" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">3. Sẽ tham gia, nếu được xin ý kiến tại cuộc họp cư dân ở nơi sinh sống.</span></div></label>
+                        <label class="relative option-card block"><input type="radio" name="q4" value="4" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="text-sm font-medium">4. Sẽ tham gia, nếu được xin ý kiến theo hình thức trực tuyến.</span></div></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-container fade-in-section">
+                <div class="mb-8">
+                    <label class="block font-semibold mb-3">Câu 5. Ông/Bà cảm nhận như thế nào về tình trạng công chức gây phiền hà, sách nhiễu cho người dân trong quá trình giải quyết thủ tục hành chính hiện nay ở địa phương?</label>
+                    <div class="space-y-3">
+                        <label class="relative option-card block"><input type="radio" name="q5" value="1" class="peer sr-only" required><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="font-medium text-sm">1. Không có công chức nào gây phiền hà, sách nhiễu cho người dân.</span></div></label>
+                        <label class="relative option-card block"><input type="radio" name="q5" value="2" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="font-medium text-sm">2. Có một số công chức gây phiền hà, sách nhiễu cho người dân.</span></div></label>
+                        <label class="relative option-card block"><input type="radio" name="q5" value="3" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="font-medium text-sm">3. Có nhiều công chức gây phiền hà, sách nhiễu cho người dân.</span></div></label>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block font-semibold mb-3">Câu 6. Ông/Bà suy nghĩ gì về tình trạng người dân phải đưa tiền ngoài quy định nộp phí lệ phí (hay còn gọi là “tiền bôi trơn”, tiền “đút lót”) cho công chức trong quá trình giải quyết thủ tục hành chính hiện nay ở địa phương?</label>
+                    <div class="space-y-3">
+                        <label class="relative option-card block"><input type="radio" name="q6" value="1" class="peer sr-only" required><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="font-medium text-sm">1. Không có người dân nào phải đưa tiền ngoài quy định cho công chức.</span></div></label>
+                        <label class="relative option-card block"><input type="radio" name="q6" value="2" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="font-medium text-sm">2. Có một số người dân phải đưa tiền ngoài quy định cho công chức.</span></div></label>
+                        <label class="relative option-card block"><input type="radio" name="q6" value="3" class="peer sr-only"><div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-center gap-3"><div class="icon-circle w-5 h-5 rounded-full border-2 border-slate-300 flex-shrink-0"></div><span class="font-medium text-sm">3. Có nhiều người dân phải đưa tiền ngoài quy định cho công chức.</span></div></label>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block font-semibold mb-4 text-slate-800">Câu 7. Ông/Bà đánh giá mức độ phù hợp của các hình thức giải quyết thủ tục hành chính đối với bản thân Ông/Bà như thế nào?</label>
+                    <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                        <table class="w-full text-left border-collapse matrix-table">
+                            <thead class="bg-slate-50 text-sm">
+                                <tr>
+                                    <th class="p-4 border-b border-r font-semibold text-slate-700 w-2/5">Hình thức nộp/nhận kết quả</th>
+                                    <th class="p-2 border-b text-center font-medium">1. Không phù hợp</th>
+                                    <th class="p-2 border-b text-center font-medium">2. Khá phù hợp</th>
+                                    <th class="p-2 border-b text-center font-medium">3. Phù hợp</th>
+                                    <th class="p-2 border-b text-center font-medium">4. Rất phù hợp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <script>
+                                    const tthc_forms = [
+                                        "1. Nộp hồ sơ và nhận kết quả giải quyết thủ tục hành chính theo hình thức trực tiếp (tại cơ quan nhà nước).", 
+                                        "2. Nộp hồ sơ và nhận kết quả giải quyết thủ tục hành chính theo hình thức trực tuyến toàn trình (tất cả các công việc đều thực hiện qua mạng internet)", 
+                                        "3. Nộp hồ sơ và nhận kết quả giải quyết thủ tục hành chính theo hình thức trực tuyến một phần (một số công việc trực tiếp tại cơ quan nhà nước và một số công việc qua mạng internet)."
+                                    ];
+                                    tthc_forms.forEach((f, idx) => {
+                                        document.write(`
+                                        <tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors">
+                                            <td class="p-3 border-r md:border-b-0 border-slate-100 font-medium text-sm">${f}</td>
+                                            <td class="p-3 text-center" data-label="1. Không PH"><input type="radio" name="q7_${idx+1}" value="1" class="w-5 h-5 accent-primary" required></td>
+                                            <td class="p-3 text-center" data-label="2. Khá PH"><input type="radio" name="q7_${idx+1}" value="2" class="w-5 h-5 accent-primary"></td>
+                                            <td class="p-3 text-center" data-label="3. Phù hợp"><input type="radio" name="q7_${idx+1}" value="3" class="w-5 h-5 accent-primary"></td>
+                                            <td class="p-3 text-center" data-label="4. Rất PH"><input type="radio" name="q7_${idx+1}" value="4" class="w-5 h-5 accent-primary"></td>
+                                        </tr>
+                                        `);
+                                    });
+                                </script>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block font-semibold mb-4 text-slate-800">Câu 8. Xin Ông/Bà cho biết trải nghiệm của bản thân Ông/Bà đối với các nội dung trong bảng dưới đây?</label>
+                    <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                        <table class="w-full text-left border-collapse matrix-table">
+                            <thead class="bg-slate-50 text-sm">
+                                <tr>
+                                    <th class="p-4 border-b border-r font-semibold text-slate-700 w-3/5">Nội dung</th>
+                                    <th class="p-2 border-b text-center font-medium text-green-600">1. Có</th>
+                                    <th class="p-2 border-b text-center font-medium text-red-500">2. Không</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <script>
+                                    const experiences = [
+                                        "1. Ông/Bà đang có người thân đang đi học phổ thông hoặc đã có người thân đi học phổ thông trong thời gian 3 năm trở lại đây.",
+                                        "2. Ông/Bà hoặc người thân của Ông/Bà đi khám, chữa bệnh tại bệnh viện, phòng khám đa khoa ở tuyến thành phố, tuyến phường.",
+                                        "3. Ông/Bà giải quyết thủ tục hành chính tại Trung tâm Phục vụ hành chính công của thành phố.",
+                                        "4. Ông/Bà giải quyết thủ tục hành chính tại Điểm phục vụ hành chính công tại phường.",
+                                        "5. Ông/Bà hỏi chính quyền, công chức về chính sách, thủ tục hành chính.",
+                                        "6. Ông/Bà nêu ý kiến đánh giá với chính quyền về kết quả thực hiện chính sách, kết quả giải quyết thủ tục hành chính.",
+                                        "7. Ông/Bà nêu ý kiến phản ánh, kiến nghị với chính quyền về chính sách, thủ tục hành chính."
+                                    ];
+                                    experiences.forEach((exp, idx) => {
+                                        document.write(`
+                                        <tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors">
+                                            <td class="p-3 border-r md:border-b-0 border-slate-100 font-medium text-sm">${exp}</td>
+                                            <td class="p-3 text-center" data-label="Có"><input type="radio" name="q8_${idx+1}" value="1" class="w-5 h-5 accent-green-600" required></td>
+                                            <td class="p-3 text-center" data-label="Không"><input type="radio" name="q8_${idx+1}" value="2" class="w-5 h-5 accent-red-500"></td>
+                                        </tr>
+                                        `);
+                                    });
+                                </script>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-container fade-in-section">
+                <div class="mb-6 border-b border-slate-100 pb-4">
+                    <label class="block font-bold text-lg mb-2 text-primary">Câu 9. Xin Ông/Bà cho biết mức độ hài lòng của Ông/Bà về các nội dung trong bảng bên dưới đây:</label>
+                    <div class="flex flex-wrap gap-3 mt-4 text-xs sm:text-sm font-medium p-3 bg-slate-50 rounded-lg inline-flex shadow-sm border border-slate-200">
+                        <span class="flex items-center gap-1 text-red-600"><span class="w-5 h-5 flex items-center justify-center bg-red-100 rounded-full">1</span> Rất không hài lòng</span>
+                        <span class="flex items-center gap-1 text-orange-500"><span class="w-5 h-5 flex items-center justify-center bg-orange-100 rounded-full">2</span> Không hài lòng</span>
+                        <span class="flex items-center gap-1 text-slate-500"><span class="w-5 h-5 flex items-center justify-center bg-slate-200 rounded-full">3</span> Bình thường</span>
+                        <span class="flex items-center gap-1 text-blue-500"><span class="w-5 h-5 flex items-center justify-center bg-blue-100 rounded-full">4</span> Hài lòng</span>
+                        <span class="flex items-center gap-1 text-green-600"><span class="w-5 h-5 flex items-center justify-center bg-green-100 rounded-full">5</span> Rất hài lòng</span>
+                    </div>
+                </div>
+
+                <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                    <table class="w-full text-left border-collapse matrix-table">
+                        <thead class="bg-slate-100 text-sm hidden md:table-header-group">
+                            <tr>
+                                <th class="p-4 border-b border-r font-semibold text-slate-800 w-2/5">Nội dung đánh giá</th>
+                                <th class="p-2 border-b text-center font-bold text-red-600">1</th>
+                                <th class="p-2 border-b text-center font-bold text-orange-500">2</th>
+                                <th class="p-2 border-b text-center font-bold text-slate-500">3</th>
+                                <th class="p-2 border-b text-center font-bold text-blue-500">4</th>
+                                <th class="p-2 border-b text-center font-bold text-green-600">5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- I. Xây dựng chính sách -->
+                            <tr class="group-header"><td colspan="6">I. VIỆC XÂY DỰNG, TỔ CHỨC THỰC HIỆN CHÍNH SÁCH CÔNG (NÊU Ở CÂU 1)</td></tr>
+                            <tr class="sub-group-header"><td colspan="6">A. Trách nhiệm giải trình của chính quyền về chính sách</td></tr>
+                            <script>
+                                const q9_A = [
+                                    "1. Chính quyền cung cấp, giải thích thông tin về các chính sách theo nhiều hình thức, giúp mọi người dân dễ tìm, dễ thấy. (Các hình thức như: Niêm yết công khai tại cơ quan, loa phát thanh phường, họp tổ dân phố, đăng tải trên trang thông tin điện tử của chính quyền...)",
+                                    "2. Chính quyền cung cấp thông tin về các chính sách đầy đủ, dễ hiểu đối với người dân."
+                                ];
+                                q9_A.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700 font-medium">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+1}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+1}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+1}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+1}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+1}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+
+                            <tr class="sub-group-header"><td colspan="6">B. Sự tham gia của người dân vào quá trình xây dựng, tổ chức thực hiện chính sách</td></tr>
+                            <script>
+                                const q9_B = [
+                                    "3. Chính quyền tổ chức nhiều hình thức để người dân dễ dàng tham gia góp ý kiến xây dựng các chính sách. (Các hình thức như: Mở các mục xin ý kiến vào dự thảo chính sách trên các trang thông tin điện tử; gửi phiếu xin ý kiến/phiếu khảo sát tới người dân; họp xin ý kiến tại khu dân cư; đăng tải công khai các số điện thoại, địa chỉ hộp thư điện tử để xin ý kiến ...)",
+                                    "4. Chính quyền tổ chức nhiều hình thức để người dân dễ dàng phản hồi ý kiến đánh giá tình hình triển khai và kết quả, tác động của các chính sách ở địa phương."
+                                ];
+                                q9_B.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700 font-medium">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+3}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+3}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+3}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+3}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+3}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+
+                            <tr class="sub-group-header"><td colspan="6">C. Chất lượng tổ chức thực hiện chính sách</td></tr>
+                            <script>
+                                const q9_C = [
+                                    "5. Chính quyền tổ chức thực hiện tốt chính sách phát triển kinh tế ở địa phương (Các quy định, các hoạt động thu hút đầu tư, kinh doanh, việc làm, tín dụng...)", 
+                                    "6. Chính quyền tổ chức thực hiện tốt chính sách khám chữa bệnh ở địa phương (Các quy định, hoạt động khám, chữa bệnh, bảo hiểm y tế, viện phí, nhập viện, chuyển viện... ở các bệnh viện công, phòng khám công, trạm y tế)", 
+                                    "7. Chính quyền tổ chức thực hiện tốt chính sách giáo dục phổ thông ở địa phương (Các quy định, hoạt động dạy và học, chương trình học, sách giáo khoa, trường học, lớp học, đánh giá học sinh, thủ tục nhập học ... ở các trường phổ thông công lập)",
+                                    "8. Chính quyền tổ chức thực hiện tốt chính sách trật tự, an toàn xã hội ở địa phương (Các quy định, hoạt động quản lý dân cư, giữ gìn trật tự nơi công cộng, quản lý an ninh mạng; phòng chống tội phạm...)", 
+                                    "9. Chính quyền tổ chức thực hiện tốt chính sách giao thông đường bộ ở địa phương (Các quy định, hoạt động xây dựng, phát triển đường bộ; giao thông đường bộ; bảo đảm trật tự, an toàn giao thông đường bộ ...)", 
+                                    "10. Chính quyền tổ chức thực hiện tốt chính sách điện sinh hoạt ở địa phương (Các quy định, hoạt động cung cấp điện sinh hoạt, giá tiền điện sinh hoạt, quản lý, phát triển điện sinh hoạt...)",
+                                    "11. Chính quyền tổ chức thực hiện tốt chính sách nước sinh hoạt ở địa phương (Các quy định, hoạt động cung cấp nước sinh hoạt, giá tiền nước sinh hoạt, quản lý, phát triển nước sinh hoạt...)", 
+                                    "12. Chính quyền tổ chức thực hiện tốt chính sách an sinh xã hội ở địa phương (Các quy định, hoạt động thu, thanh toán bảo hiểm xã hội, bảo hiểm thất nghiệp; hỗ trợ thường xuyên đối với người có công, người nghèo, người tàn tật, hỗ trợ đột xuất cho người dân khi gặp mất mùa, thiên tai ...)", 
+                                    "13. Chính quyền tổ chức thực hiện tốt chính sách cải cách hành chính ở địa phương (Các quy định, hoạt động cải cách thể chế, cải cách thủ tục hành chính, cải cách tổ chức bộ máy cơ quan nhà nước, cải cách công vụ, cải cách quản lý tài chính công, xây dựng chính quyền điện tử, chính quyền số...)"
+                                ];
+                                q9_C.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+5}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+5}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+5}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+5}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+5}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+
+                            <tr class="sub-group-header"><td colspan="6">D. Kết quả, tác động của chính sách</td></tr>
+                            <script>
+                                const q9_D = [
+                                    "14. Kinh tế gia đình của người dân địa phương tốt hơn.", 
+                                    "15. Kinh tế - xã hội của địa phương tốt hơn.", 
+                                    "16. Bệnh viện công lập ở địa phương khám chữa bệnh cho người dân tốt hơn.",
+                                    "17. Trường phổ thông công lập dạy học sinh tốt hơn.", 
+                                    "18. Trật tự, an toàn xã hội ở địa phương tốt hơn.", 
+                                    "19. Đường bộ, giao thông ở địa phương tốt hơn.",
+                                    "20. Điện sinh hoạt của người dân ở địa phương tốt hơn.", 
+                                    "21. Nước sinh hoạt của người dân ở địa phương tốt hơn.", 
+                                    "22. An sinh xã hội đối với người dân ở địa phương tốt hơn.",
+                                    "23. Cơ quan hành chính nhà nước, đội ngũ cán bộ, công chức, viên chức ở địa phương có năng lực và thực thi công vụ tốt hơn."
+                                ];
+                                q9_D.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+14}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+14}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+14}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+14}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+14}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+
+                            <!-- II. Cung ứng dịch vụ -->
+                            <tr class="group-header"><td colspan="6">II. VIỆC CUNG ỨNG DỊCH VỤ HÀNH CHÍNH CÔNG</td></tr>
+                            <tr class="sub-group-header"><td colspan="6">A. Tiếp cận dịch vụ</td></tr>
+                            <script>
+                                const q9_II_A = [
+                                    "24. Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công có biển hiệu, hướng dẫn rõ ràng, giúp người dân dễ tìm, dễ thấy.", 
+                                    "25. Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công có đủ ghế ngồi chờ, ghế ngồi giải quyết công việc và bàn viết cho người dân.", 
+                                    "26. Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công có trang thiết bị phục vụ người dân đầy đủ, chất lượng tốt, giúp người dân giải quyết công việc dễ dàng hơn. (Máy lấy số xếp hàng, máy tính, máy để tra cứu thông tin, máy điều hòa, quạt mát)"
+                                ];
+                                q9_II_A.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+24}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+24}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+24}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+24}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+24}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+
+                            <tr class="sub-group-header"><td colspan="6">B. Thủ tục hành chính</td></tr>
+                            <script>
+                                const q9_II_B = [
+                                    "27. Quy định thủ tục hành chính được niêm yết công khai tại Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công giúp người dân dễ thấy, dễ đọc.", 
+                                    "28. Công chức yêu cầu người dân nộp hồ sơ giải quyết thủ tục hành chính đúng theo quy định.", 
+                                    "29. Công chức yêu cầu người dân đóng phí lệ phí giải quyết thủ tục hành chính đúng theo quy định.", 
+                                    "30. Thời hạn giải quyết thủ tục hành chính cho người dân đúng theo quy định."
+                                ];
+                                q9_II_B.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+27}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+27}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+27}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+27}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+27}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+
+                            <tr class="sub-group-header"><td colspan="6">C. Công chức trực tiếp giải quyết công việc</td></tr>
+                            <script>
+                                const q9_II_C = [
+                                    "31. Công chức ở Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công có thái độ giao tiếp lịch sự, tôn trọng đối với người dân.", 
+                                    "32. Công chức ở Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công hướng dẫn hồ sơ dễ hiểu, đầy đủ, giúp người dân có thể hoàn thiện hồ sơ sau một lần hướng dẫn.", 
+                                    "33. Công chức ở Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công tuân thủ đúng quy định trong giải quyết thủ tục hành chính cho người dân."
+                                ];
+                                q9_II_C.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+31}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+31}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+31}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+31}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+31}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+
+                            <tr class="sub-group-header"><td colspan="6">D. Kết quả (Kết quả giải quyết TTHC có thể là được cấp giấy tờ hoặc bị từ chối cấp)</td></tr>
+                            <script>
+                                const q9_II_D = [
+                                    "34. Kết quả giải quyết thủ tục hành chính cho người dân được trả đúng hẹn.", 
+                                    "35. Kết quả giải quyết thủ tục hành chính cho người dân có thông tin đầy đủ, chính xác.", 
+                                    "36. Kết quả giải quyết thủ tục hành chính cho người dân đảm bảo tính công bằng."
+                                ];
+                                q9_II_D.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+34}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+34}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+34}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+34}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+34}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+
+                            <tr class="sub-group-header"><td colspan="6">E. Việc tiếp nhận, xử lý phản ánh, kiến nghị của người dân</td></tr>
+                            <script>
+                                const q9_II_E = [
+                                    "37. Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công bố trí hình thức tiếp nhận phản ánh, kiến nghị, giúp người dân phản ánh, kiến nghị dễ dàng.", 
+                                    "38. Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công tiếp nhận, xử lý phản ánh, kiến nghị của người dân đúng quy định.", 
+                                    "39. Chi nhánh Trung tâm Phục vụ hành chính công/Điểm phục vụ hành chính công thông báo kết quả xử lý phản ánh kiến nghị cho người dân kịp thời."
+                                ];
+                                q9_II_E.forEach((item, i) => document.write(`<tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors"><td class="p-3 border-r md:border-b-0 border-slate-100 text-sm text-slate-700">${item}</td><td class="p-3 text-center" data-label="Điểm 1"><input type="radio" name="q9_sat_${i+37}" value="1" class="w-5 h-5 accent-red-600" required></td><td class="p-3 text-center" data-label="Điểm 2"><input type="radio" name="q9_sat_${i+37}" value="2" class="w-5 h-5 accent-orange-500"></td><td class="p-3 text-center" data-label="Điểm 3"><input type="radio" name="q9_sat_${i+37}" value="3" class="w-5 h-5 accent-slate-500"></td><td class="p-3 text-center" data-label="Điểm 4"><input type="radio" name="q9_sat_${i+37}" value="4" class="w-5 h-5 accent-blue-500"></td><td class="p-3 text-center" data-label="Điểm 5"><input type="radio" name="q9_sat_${i+37}" value="5" class="w-5 h-5 accent-green-600"></td></tr>`));
+                            </script>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-container fade-in-section">
+                <div class="mb-6">
+                    <label class="block font-bold text-lg mb-4 text-primary">Câu 10. Xin Ông/Bà cho biết mức độ mong muốn của Ông/Bà đối với chính quyền địa phương trong việc cải thiện chất lượng phục vụ người dân trên các nội dung trong bảng dưới đây?</label>
+                    <div class="rounded-xl overflow-hidden border border-slate-200 shadow-sm mb-6">
+                        <table class="w-full text-left border-collapse matrix-table">
+                            <thead class="bg-slate-50 text-sm">
+                                <tr>
+                                    <th class="p-4 border-b border-r font-semibold text-slate-700 w-2/5">Nội dung</th>
+                                    <th class="p-2 border-b text-center font-medium">1. Không mong muốn</th>
+                                    <th class="p-2 border-b text-center font-medium">2. Khá mong muốn</th>
+                                    <th class="p-2 border-b text-center font-medium">3. Mong muốn</th>
+                                    <th class="p-2 border-b text-center font-medium">4. Rất mong muốn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <script>
+                                    const expectations = [
+                                        "1. Nâng cao tính công khai, minh bạch trong cung cấp thông tin cho người dân.",
+                                        "2. Tăng cường trách nhiệm giải trình của chính quyền đối với người dân.",
+                                        "3. Mở rộng các cơ hội tham gia giám sát của người dân đối với hoạt động của chính quyền.",
+                                        "4. Nâng cao hiệu lực, hiệu quả hoạt động của chính quyền địa phương.",
+                                        "5. Tăng cường cơ sở vật chất, trang thiết bị phục vụ giải quyết công việc cho người dân.",
+                                        "6. Nâng cao năng lực của cán bộ, công chức, viên chức trong giải quyết công việc cho người dân.",
+                                        "7. Nâng cao tinh thần, thái độ phục vụ của cán bộ, công chức, viên chức đối với người dân trong giải quyết công việc cho người dân.",
+                                        "8. Tăng cường ứng dụng công nghệ thông tin, chuyển đổi số trong giải quyết công việc cho người dân.",
+                                        "9. Nâng cao chất lượng cung ứng dịch vụ công trực tuyến để tạo điều kiện thuận lợi, dễ dàng cho người dân trong thực hiện dịch vụ công trực tuyến.",
+                                        "10. Nâng cao chất lượng tiếp nhận, giải quyết ý kiến góp ý, phản ánh, kiến nghị của người dân."
+                                    ];
+                                    expectations.forEach((exp, idx) => {
+                                        document.write(`
+                                        <tr class="hover:bg-slate-50 border-b border-slate-100 transition-colors">
+                                            <td class="p-3 border-r md:border-b-0 border-slate-100 font-medium text-sm text-slate-700">${exp}</td>
+                                            <td class="p-3 text-center" data-label="1. Không MM"><input type="radio" name="q10_${idx+1}" value="1" class="w-5 h-5 accent-primary" required></td>
+                                            <td class="p-3 text-center" data-label="2. Khá MM"><input type="radio" name="q10_${idx+1}" value="2" class="w-5 h-5 accent-primary"></td>
+                                            <td class="p-3 text-center" data-label="3. Mong muốn"><input type="radio" name="q10_${idx+1}" value="3" class="w-5 h-5 accent-primary"></td>
+                                            <td class="p-3 text-center" data-label="4. Rất MM"><input type="radio" name="q10_${idx+1}" value="4" class="w-5 h-5 accent-primary"></td>
+                                        </tr>
+                                        `);
+                                    });
+                                </script>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold mb-3 text-slate-800">Ý kiến khác (xin Ông/Bà ghi cụ thể):</label>
+                    <textarea rows="3" name="other_feedback" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:border-primary focus:bg-white focus:ring-0 outline-none resize-none transition-colors shadow-inner" placeholder="Ghi cụ thể ý kiến của Ông/Bà..."></textarea>
+                </div>
+            </div>
+
+            <div class="section-container bg-slate-50 fade-in-section">
+                <h2 class="text-lg font-bold text-slate-700 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-user-tie"></i> PHẦN C. THÔNG TIN ĐIỀU TRA VIÊN <span class="text-sm font-normal text-slate-500 italic ml-2">(Không bắt buộc)</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input type="text" placeholder="(1) Họ và tên" class="w-full p-2.5 border border-slate-300 bg-white rounded-lg text-sm outline-none focus:border-primary">
+                    <input type="text" placeholder="(2) Địa điểm khảo sát" class="w-full p-2.5 border border-slate-300 bg-white rounded-lg text-sm outline-none focus:border-primary">
+                    <input type="date" title="(3) Thời gian tiến hành khảo sát" class="w-full p-2.5 border border-slate-300 bg-white rounded-lg text-sm outline-none focus:border-primary text-slate-500">
+                </div>
+            </div>
+
+            <div class="sticky bottom-6 z-40 bg-white/90 backdrop-blur-lg p-4 rounded-2xl shadow-[0_-5px_20px_-5px_rgba(0,0,0,0.15)] border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 animate-on-scroll">
+                <span class="text-sm font-medium text-slate-600 text-center md:text-left"><i class="fa-solid fa-circle-info text-blue-500 mr-1"></i> Vui lòng kiểm tra đã điền đầy đủ tất cả các Câu hỏi trước khi gửi.</span>
+                <button type="submit" class="w-full md:w-auto px-10 py-3.5 bg-primary hover:bg-blue-800 text-white rounded-xl font-bold shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 text-lg">
+                    Gửi phiếu khảo sát <i class="fa-solid fa-paper-plane ml-1"></i>
+                </button>
+            </div>
+        </form>
+
+        <div id="success-state" class="hidden flex-col items-center justify-center py-24 text-center fade-in-section">
+            <div class="w-28 h-28 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-8 shadow-lg shadow-green-100">
+                <i class="fa-solid fa-check text-6xl"></i>
+            </div>
+            <h2 class="text-4xl font-bold text-slate-800 mb-4 tracking-tight">Gửi Thành Công!</h2>
+            <p class="text-lg text-slate-600 max-w-lg mx-auto mb-10 leading-relaxed">UBND Phường Tùng Thiện trân trọng cảm ơn Ông/Bà đã dành thời gian tham gia khảo sát. Mọi ý kiến đều được ghi nhận để phục vụ nhân dân tốt hơn.</p>
+            <button onclick="location.reload()" class="px-8 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold transition-all shadow-sm border border-slate-200 flex items-center gap-2 mx-auto">
+                <i class="fa-solid fa-rotate-right"></i> Thực hiện khảo sát khác
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        // Handle Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        });
+
+        // Intersection Observer for scroll animations (fade-in & slide-up)
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll('.fade-in-section');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Triggers when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Handle Form Submit
+        document.getElementById('survey-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page reload
+            
+            // Native browser validation is triggered before this event fires.
+            // If it gets here, the form is valid.
+            
+            // Hide form, show success state smoothly
+            const form = document.getElementById('survey-form');
+            const successState = document.getElementById('success-state');
+            
+            form.style.opacity = '0';
+            form.style.transform = 'translateY(-20px)';
+            form.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                successState.classList.remove('hidden');
+                successState.classList.add('flex');
+                
+                // Trigger reflow to apply transition classes
+                void successState.offsetWidth;
+                successState.classList.add('is-visible');
+                
+                // Ensure scroll progress is full and green
+                const progressBar = document.getElementById('scroll-progress');
+                progressBar.style.width = '100%';
+                progressBar.classList.remove('bg-primary');
+                progressBar.classList.add('bg-green-500');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

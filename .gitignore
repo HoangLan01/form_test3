@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment configuration
+.env
+.env.local
+.env.*.local
+*.env
+
+# Google Cloud Service Account credentials (DO NOT COMMIT!)
+credentials.json
+*.pem
+*.key
+
+# Runtime data & temp files
+data/pdf_temp/
+data/counter.json
+logs/
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
