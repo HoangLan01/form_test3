@@ -128,12 +128,18 @@ nano .env
 ```
 Nội dung file `.env`:
 ```env
-PORT=3000
+PORT=3005
 NODE_ENV=production
+DOMAIN=https://khaosat.phuongtungthien.vn
+
+# Google Cloud Service Account (Google Sheets API)
 GOOGLE_CREDENTIALS_PATH=./credentials.json
-GOOGLE_DRIVE_FOLDER_ID=1AbCdEfGhIjKlMnOpQrStUvWxYz
-GOOGLE_SPREADSHEET_ID=1XyZ123456789abcdef
-GOOGLE_SHEET_NAME=Trang tính1
+GOOGLE_SPREADSHEET_ID=1RuF8FIKLLG3H7JI4M6CZ2w_C0QF-E5ZqU7ViicBGA0c
+GOOGLE_SHEET_NAME=Sheet1
+
+# Google Drive (Gmail cá nhân Webhook)
+GOOGLE_DRIVE_FOLDER_ID=1RPIJHMQOxyZNOFRw8Axax6vQSJ-h_f63
+GOOGLE_DRIVE_WEBHOOK_URL=https://script.google.com/macros/s/AKfycbzgtvSTtZWzqqc6HE6tqvN2Vy4WFzOxGrAbXlsaDALrz3OVcasTqAaGRX6W3dW4M1TkqQ/exec
 ```
 *(Bấm `Ctrl + O` rồi `Enter` để lưu, `Ctrl + X` để thoát).*
 
@@ -164,7 +170,7 @@ pm2 restart all             # Khởi động lại ứng dụng
 
 ### BƯỚC 6: CẤU HÌNH NGINX & CẤP CHỨNG CHỈ SSL HTTPS
 
-1. Trỏ bản ghi DNS của tên miền `khaosat.phuongtungthien.vn` (Bản ghi `A`) về địa chỉ IP của server Ubuntu.
+1. Trỏ bản ghi DNS của tên miền `khaosat.phuongtungthien.vn` (Bản ghi `A`) về địa chỉ IP của server Ubuntu `103.90.227.130`.
 
 2. Cấu hình Nginx:
 ```bash
@@ -180,7 +186,7 @@ server {
     client_max_body_size 20M;
 
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass http://127.0.0.1:3005;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
