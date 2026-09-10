@@ -25,6 +25,28 @@ const HEADERS = [
 ];
 
 let isHeaderChecked = false;
+let resolvedSheetName = null;
+
+/**
+ * Lấy tên tab đầu tiên của file Google Sheet tự động
+ */
+async function getActualSheetName(sheets, spreadsheetId) {
+  if (resolvedSheetName) return resolvedSheetName;
+  try {
+    const res = await sheets.spreadsheets.get({
+      spreadsheetId,
+      fields: 'sheets.properties.title'
+    });
+    if (res.data.sheets && res.data.sheets.length > 0) {
+      resolvedSheetName = res.data.sheets[0].properties.title;
+      return resolvedSheetName;
+    }
+  } catch (err) {
+    console.warn(`⚠️ [Google Sheets] Không thể lấy tên tab, dùng mặc định:`, err.message);
+  }
+  resolvedSheetName = process.env.GOOGLE_SHEET_NAME || 'Trang tính1';
+  return resolvedSheetName;
+}
 
 /**
  * Đảm bảo file Sheet đã có dòng tiêu đề cột
@@ -32,7 +54,7 @@ let isHeaderChecked = false;
 async function ensureHeaders(sheets, spreadsheetId, sheetName) {
   if (isHeaderChecked) return;
   try {
-    const range = `${sheetName}!A1:U1`;
+    const range = `'${sheetName}'!A1:U1`;
     const res = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range
@@ -48,11 +70,11 @@ async function ensureHeaders(sheets, spreadsheetId, sheetName) {
           values: [HEADERS]
         }
       });
-      console.log(`📋 [Google Sheets] Đã tạo dòng Tiêu đề cột chuẩn cho file Sheet`);
+      console.log(`📋 [Google Sheets] Đã tạo dòng Tiêu đề cột chuẩn cho file Sheet (${sheetName})`);
     }
     isHeaderChecked = true;
   } catch (err) {
-    console.warn(`⚠️ [Google Sheets] Không thể kiểm tra header (có thể sheet mới):`, err.message);
+    console.warn(`⚠️ [Google Sheets] Không thể kiểm tra header:`, err.message);
   }
 }
 
@@ -95,6 +117,7 @@ async function appendSurveyRow(mappedData, drivePdfLink) {
   }
 
   try {
+    const sheetName = await getActualSheetName(sheets, spreadsheetId);
     await ensureHeaders(sheets, spreadsheetId, sheetName);
 
     // Tóm tắt kết quả Câu 1
@@ -130,7 +153,7 @@ async function appendSurveyRow(mappedData, drivePdfLink) {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: `${sheetName}!A:U`,
+      range: `'${sheetName}'!A:U`,
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
       resource: {

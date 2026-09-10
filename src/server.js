@@ -69,7 +69,7 @@ app.post('/api/submit', async (req, res) => {
 
     // 4. Upload file PDF vào Google Drive của quản lý
     console.log(`⏳ Đang đồng bộ file PDF lên Google Drive...`);
-    const driveResult = await googleDriveService.uploadPdf(pdfResult.filePath, pdfResult.fileName);
+    const driveResult = await googleDriveService.uploadPdf(pdfResult.filePath, pdfResult.fileName, code);
 
     // 5. Ghi 1 dòng dữ liệu khảo sát vào Google Sheet
     console.log(`⏳ Đang ghi dữ liệu vào Google Sheet...`);
