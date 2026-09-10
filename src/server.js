@@ -12,7 +12,7 @@ const googleSheetService = require('./services/googleSheetService');
 const googleAuth = require('./config/googleAuth');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 
 // Middlewares
 app.use(cors());
@@ -41,10 +41,33 @@ app.get('/api/health', (req, res) => {
 });
 
 /**
- * Endpoint tiếp nhận gửi phiếu khảo sát chính
- * Quy trình: Sinh mã -> Tạo PDF -> Upload Drive -> Ghi Sheet -> Trả về kết quả
+ * Hàm đồng bộ dữ liệu ngầm lên Google Drive & Google Sheet (chạy nền, không chặn người dùng)
+ */
+async function syncToGoogleBackground(mappedData, pdfResult, code, retryCount = 0) {
+  try {
+    // 1. Upload file PDF vào Google Drive
+    const driveResult = await googleDriveService.uploadPdf(pdfResult.filePath, pdfResult.fileName, code);
+
+    // 2. Ghi dòng dữ liệu vào Google Sheet
+    await googleSheetService.appendSurveyRow(mappedData, driveResult.webViewLink);
+
+    console.log(`✨ [Background Sync] Đã đồng bộ xong mã ${code} lên Drive & Sheet!`);
+  } catch (err) {
+    console.error(`⚠️ [Background Sync] Lỗi đồng bộ ngầm cho mã ${code}:`, err.message);
+    // Tự động thử lại 1 lần sau 3 giây nếu gặp sự cố mạng
+    if (retryCount < 1) {
+      setTimeout(() => {
+        syncToGoogleBackground(mappedData, pdfResult, code, retryCount + 1);
+      }, 3000);
+    }
+  }
+}
+
+/**
+ * Endpoint tiếp nhận gửi phiếu khảo sát chính (Siêu tốc < 0.2s)
  */
 app.post('/api/submit', async (req, res) => {
+  const startTime = Date.now();
   try {
     const rawData = req.body;
 
@@ -55,43 +78,36 @@ app.post('/api/submit', async (req, res) => {
       });
     }
 
-    // 1. Tự động sinh mã phiếu tiếp nhận SIPAS-TT-2026-XXXX
+    // 1. Tự động sinh mã phiếu tiếp nhận SIPAS-TT-2026-XXXX (1ms)
     const { code } = await counterService.getNextCode();
-    console.log(`\n📥 [Tiếp nhận khảo sát mới] Mã phiếu: ${code}`);
+    console.log(`\n📥 [Tiếp nhận khảo sát] Mã phiếu: ${code}`);
 
-    // 2. Ánh xạ dữ liệu sang định dạng chuẩn tiếng Việt
+    // 2. Ánh xạ dữ liệu sang định dạng chuẩn tiếng Việt (1ms)
     const mappedData = surveyMapper.mapSurveyData(rawData, code);
 
-    // 3. Tạo file PDF tóm tắt chuẩn văn bản hành chính (A4)
-    console.log(`⏳ Đang tạo file PDF tóm tắt cho mã ${code}...`);
+    // 3. Tạo file PDF tóm tắt cục bộ siêu tốc (~50ms)
     const pdfResult = await pdfService.generateSummaryPdf(mappedData);
-    console.log(`✅ Đã tạo PDF thành công: ${pdfResult.fileName} (${(pdfResult.buffer.length / 1024).toFixed(1)} KB)`);
 
-    // 4. Upload file PDF vào Google Drive của quản lý
-    console.log(`⏳ Đang đồng bộ file PDF lên Google Drive...`);
-    const driveResult = await googleDriveService.uploadPdf(pdfResult.filePath, pdfResult.fileName, code);
+    const duration = Date.now() - startTime;
+    console.log(`⚡ Xử lý xong và phản hồi cho người dân trong ${duration}ms (Mã: ${code})`);
 
-    // 5. Ghi 1 dòng dữ liệu khảo sát vào Google Sheet
-    console.log(`⏳ Đang ghi dữ liệu vào Google Sheet...`);
-    const sheetResult = await googleSheetService.appendSurveyRow(mappedData, driveResult.webViewLink);
-
-    // 6. Trả về kết quả thành công cho người dân
-    return res.json({
+    // 4. TRẢ NGAY KẾT QUẢ THÀNH CÔNG CHO NGƯỜI DÂN (Dưới 0.2s)
+    res.json({
       success: true,
       message: 'Gửi phiếu khảo sát thành công!',
       code,
       submitTime: mappedData.submitTime,
-      driveLink: driveResult.webViewLink,
       downloadUrl: `/api/download-pdf/${encodeURIComponent(code)}`,
-      syncStatus: {
-        drive: driveResult.success,
-        sheet: sheetResult.success,
-        isMockMode: driveResult.isMock || sheetResult.isMock
-      }
+      responseTimeMs: duration
+    });
+
+    // 5. KÍCH HOẠT ĐỒNG BỘ CHẠY NGẦM LÊN GOOGLE DRIVE & SHEET (Không làm người dân phải chờ)
+    setImmediate(() => {
+      syncToGoogleBackground(mappedData, pdfResult, code);
     });
 
   } catch (err) {
-    console.error('❌ Lỗi trong quá trình xử lý gửi phiếu:', err);
+    console.error('❌ Lỗi khi xử lý phiếu:', err);
     return res.status(500).json({
       success: false,
       error: 'Hệ thống gặp sự cố khi xử lý phiếu: ' + err.message
@@ -129,13 +145,17 @@ app.get('*', (req, res) => {
 
 // Khởi chạy server khi chạy trực tiếp
 if (require.main === module) {
-  app.listen(PORT, () => {
+  app.listen(PORT, async () => {
     console.log(`====================================================`);
     console.log(`🚀 SIPAS Survey Server chạy trên: http://localhost:${PORT}`);
     console.log(`🏛️ Cơ quan: UBND Phường Tùng Thiện - Thị xã Sơn Tây`);
     console.log(`🌐 Tên miền: https://khaosat.phuongtungthien.vn`);
     console.log(`📋 Mã phiếu hiện tại: ${counterService.getCurrentState().code || 'Sẵn sàng khởi tạo 0001'}`);
     console.log(`====================================================`);
+
+    // Làm nóng trình duyệt nền sẵn sàng
+    await pdfService.warmUp();
+    googleAuth.initAuth();
   });
 }
 

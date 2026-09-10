@@ -10,18 +10,114 @@ if (!fs.existsSync(TEMP_PDF_DIR)) {
   fs.mkdirSync(TEMP_PDF_DIR, { recursive: true });
 }
 
+// Pre-read template to memory cache
+let cachedTemplate = null;
+function getCachedTemplate() {
+  if (!cachedTemplate) {
+    cachedTemplate = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+  }
+  return cachedTemplate;
+}
+
+// Singleton browser instance
+let sharedBrowser = null;
+let browserInitializing = false;
+
+// Concurrency limiter: Tối đa 6 trang đồng thời
+const MAX_CONCURRENT_PAGES = 6;
+let activePages = 0;
+const queue = [];
+
 /**
- * Render dynamic HTML from survey mapped data
+ * Khởi tạo hoặc lấy lại Browser dùng chung an toàn
+ */
+async function getBrowser() {
+  if (sharedBrowser && sharedBrowser.connected) {
+    return sharedBrowser;
+  }
+
+  if (browserInitializing) {
+    while (browserInitializing) {
+      await new Promise(r => setTimeout(r, 20));
+    }
+    if (sharedBrowser && sharedBrowser.connected) {
+      return sharedBrowser;
+    }
+  }
+
+  browserInitializing = true;
+  try {
+    sharedBrowser = await puppeteer.launch({
+      headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--disable-extensions',
+        '--font-render-hinting=medium'
+      ]
+    });
+
+    sharedBrowser.on('disconnected', () => {
+      sharedBrowser = null;
+    });
+
+    return sharedBrowser;
+  } finally {
+    browserInitializing = false;
+  }
+}
+
+/**
+ * Khởi động nóng trình duyệt ngay khi server bật
+ */
+async function warmUp() {
+  try {
+    const browser = await getBrowser();
+    const page = await browser.newPage();
+    await page.setContent('<html><body>warmup</body></html>', { waitUntil: 'domcontentloaded' });
+    await page.close();
+    console.log('⚡ [PDF Service] Đã làm nóng trình duyệt Puppeteer sẵn sàng phục vụ.');
+  } catch (err) {
+    console.warn('⚠️ [PDF Service] Không thể làm nóng trình duyệt:', err.message);
+  }
+}
+
+function processQueue() {
+  if (activePages >= MAX_CONCURRENT_PAGES || queue.length === 0) {
+    return;
+  }
+  const next = queue.shift();
+  if (next) {
+    activePages++;
+    next();
+  }
+}
+
+function acquireLock() {
+  return new Promise((resolve) => {
+    queue.push(resolve);
+    processQueue();
+  });
+}
+
+function releaseLock() {
+  activePages--;
+  processQueue();
+}
+
+/**
+ * Render dynamic HTML from survey mapped data (sử dụng cache bộ nhớ)
  */
 function renderHtmlTemplate(data) {
-  let template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+  let template = getCachedTemplate();
 
   const now = new Date();
   const currentDay = String(now.getDate()).padStart(2, '0');
   const currentMonth = String(now.getMonth() + 1).padStart(2, '0');
   const currentYear = now.getFullYear();
 
-  // Basic variable replacements
   template = template.replace(/\{\{code\}\}/g, data.code || '');
   template = template.replace(/\{\{submitTime\}\}/g, data.submitTime || '');
   template = template.replace(/\{\{personal\.gender\}\}/g, data.personal?.gender || '');
@@ -49,7 +145,7 @@ function renderHtmlTemplate(data) {
   `).join('');
   template = template.replace(/\{\{#q1_rows\}\}[\s\S]*?\{\{\/q1_rows\}\}/, q1RowsHtml);
 
-  // Render Q9 summary rows (Displaying top representative items or all items)
+  // Render Q9 summary rows
   const q9RowsHtml = (data.sections?.q9 || []).map(r => `
     <tr>
       <td class="center">${r.index}</td>
@@ -68,17 +164,14 @@ function renderHtmlTemplate(data) {
     template = template.replace(/\{\{interviewer\.location\}\}/g, data.interviewer.location || 'Không ghi');
     template = template.replace(/\{\{interviewer\.date\}\}/g, data.interviewer.date || 'Không ghi');
   } else {
-    template = template.replace(/\{\{#hasInterviewer\}\}[\s\S]*?\{\{\/hasInterviewer\}\}/g, '');
+    template = template.replace(/\{\{#hasInterviewer\}\}[\s\S]*?\{\{\/hasInterviewer\}\}/, '');
   }
 
   return template;
 }
 
 /**
- * Generate PDF file using Puppeteer
- * @param {Object} mappedData Processed survey data from surveyMapper
- * @param {string} [customFileName]
- * @returns {Promise<{ filePath: string, fileName: string, buffer: Buffer }>}
+ * Tạo file PDF siêu tốc với cơ chế tự phục hồi kết nối
  */
 async function generateSummaryPdf(mappedData, customFileName) {
   const fileName = customFileName || `Phieu_SIPAS_${mappedData.code.replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`;
@@ -86,21 +179,13 @@ async function generateSummaryPdf(mappedData, customFileName) {
 
   const htmlContent = renderHtmlTemplate(mappedData);
 
-  let browser;
-  try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-gpu',
-        '--font-render-hinting=medium'
-      ]
-    });
+  await acquireLock();
 
-    const page = await browser.newPage();
-    await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
+  let page;
+  try {
+    const browser = await getBrowser();
+    page = await browser.newPage();
+    await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
 
     const pdfBuffer = await page.pdf({
       path: filePath,
@@ -119,15 +204,24 @@ async function generateSummaryPdf(mappedData, customFileName) {
       fileName,
       buffer: pdfBuffer
     };
+  } catch (err) {
+    // Nếu gặp lỗi kết nối trình duyệt, reset instance để lần sau tự kết nối lại
+    sharedBrowser = null;
+    throw err;
   } finally {
-    if (browser) {
-      await browser.close();
+    if (page) {
+      try {
+        await page.close();
+      } catch (e) {}
     }
+    releaseLock();
   }
 }
 
 module.exports = {
   generateSummaryPdf,
   renderHtmlTemplate,
+  warmUp,
+  getBrowser,
   TEMP_PDF_DIR
 };
