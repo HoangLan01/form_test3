@@ -167,14 +167,8 @@
         }
 
         .fade-in-section {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-            will-change: opacity, transform;
-        }
-        .fade-in-section.is-visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
         
         .section-container {
@@ -184,7 +178,7 @@
             padding: 2rem;
             box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
             border: 1px solid #e2e8f0;
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
         }
         @media (max-width: 768px) {
             .section-container { padding: 1.25rem; border-radius: 1rem; }
@@ -789,30 +783,6 @@
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById("scroll-progress").style.width = scrolled + "%";
-        });
-
-        // Intersection Observer for scroll animations (fade-in & slide-up)
-        document.addEventListener("DOMContentLoaded", function() {
-            const sections = document.querySelectorAll('.fade-in-section');
-            
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
         });
 
         // Handle Form Submit
