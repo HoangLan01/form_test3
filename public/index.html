@@ -222,7 +222,7 @@
 
     <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-8 relative z-10">
         
-        <form id="survey-form">
+        <form id="survey-form" novalidate>
             <div class="text-center mb-8 fade-in-section is-visible relative">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold mb-3 tracking-wide uppercase shadow-sm">
                     <i class="fa-solid fa-star text-amber-500 text-[10px]"></i> SIPAS NĂM 2026 <i class="fa-solid fa-star text-amber-500 text-[10px]"></i>
@@ -777,6 +777,33 @@
     </footer>
 
     <script>
+        // Toast Notification System
+        function showToast(message, type = 'info') {
+            let toast = document.getElementById('app-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'app-toast';
+                toast.className = 'fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3 rounded-xl shadow-2xl font-semibold text-sm flex items-center gap-2.5 transition-all duration-300 pointer-events-none opacity-0 -translate-y-4';
+                document.body.appendChild(toast);
+            }
+            
+            if (type === 'warning' || type === 'error') {
+                toast.className = 'fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3.5 rounded-xl shadow-2xl font-semibold text-sm flex items-center gap-2.5 transition-all duration-300 pointer-events-none opacity-100 translate-y-0 bg-red-600 text-white border border-red-400';
+            } else if (type === 'success') {
+                toast.className = 'fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3.5 rounded-xl shadow-2xl font-semibold text-sm flex items-center gap-2.5 transition-all duration-300 pointer-events-none opacity-100 translate-y-0 bg-green-600 text-white border border-green-400';
+            } else {
+                toast.className = 'fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-5 py-3.5 rounded-xl shadow-2xl font-semibold text-sm flex items-center gap-2.5 transition-all duration-300 pointer-events-none opacity-100 translate-y-0 bg-slate-900 text-white border border-slate-700';
+            }
+            
+            toast.innerHTML = `<i class="fa-solid ${type === 'warning' ? 'fa-triangle-exclamation text-amber-300' : (type === 'error' ? 'fa-circle-xmark text-white' : 'fa-circle-check text-green-300')} text-base"></i> <span>${message}</span>`;
+            
+            clearTimeout(window._toastTimeout);
+            window._toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', '-translate-y-4');
+            }, 3500);
+        }
+
         // Handle Scroll Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -785,7 +812,7 @@
             document.getElementById("scroll-progress").style.width = scrolled + "%";
         });
 
-        // Handle Form Submit
+        // Smart Form Submit with missing-question auto-scroll and highlight
         document.getElementById('survey-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -795,11 +822,58 @@
             const btnIcon = document.getElementById('btn-submit-icon');
             const successState = document.getElementById('success-state');
 
-            // Collect form data
+            // 1. Check required fields and auto-scroll to the first missing question
+            const requiredFields = [
+                { name: 'gender', label: 'Phần A: Giới tính' },
+                { name: 'ethnicity', label: 'Phần A: Dân tộc' },
+                { name: 'age', label: 'Phần A: Độ tuổi' },
+                { name: 'edu', label: 'Phần A: Trình độ học vấn' },
+                { name: 'job', label: 'Phần A: Nghề nghiệp' },
+                // Câu 1 (9 chính sách)
+                ...Array.from({length: 9}, (_, i) => ({ name: `q1_${i+1}`, label: `Câu 1: Mục ${i+1}` })),
+                { name: 'q4', label: 'Câu 4: Tham gia góp ý kiến' },
+                { name: 'q5', label: 'Câu 5: Tình trạng sách nhiễu' },
+                { name: 'q6', label: 'Câu 6: Tiền ngoài quy định' },
+                // Câu 7 (3 hình thức)
+                ...Array.from({length: 3}, (_, i) => ({ name: `q7_${i+1}`, label: `Câu 7: Mục ${i+1}` })),
+                // Câu 8 (7 trải nghiệm)
+                ...Array.from({length: 7}, (_, i) => ({ name: `q8_${i+1}`, label: `Câu 8: Mục ${i+1}` })),
+                // Câu 9 (30 nội dung hài lòng)
+                ...Array.from({length: 30}, (_, i) => ({ name: `q9_sat_${i+1}`, label: `Câu 9: Mục ${i+1}` })),
+                // Câu 10 (10 mong muốn)
+                ...Array.from({length: 10}, (_, i) => ({ name: `q10_${i+1}`, label: `Câu 10: Mục ${i+1}` }))
+            ];
+
+            let firstMissing = null;
+            for (const item of requiredFields) {
+                const checked = form.querySelector(`input[name="${item.name}"]:checked`);
+                if (!checked) {
+                    firstMissing = item;
+                    break;
+                }
+            }
+
+            if (firstMissing) {
+                const el = form.querySelector(`[name="${firstMissing.name}"]`);
+                if (el) {
+                    const container = el.closest('tr') || el.closest('.grid') || el.closest('div');
+                    if (container) {
+                        const y = container.getBoundingClientRect().top + window.pageYOffset - 120;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                        container.classList.add('ring-2', 'ring-red-500', 'bg-red-50/70', 'rounded-xl', 'transition-all');
+                        setTimeout(() => {
+                            container.classList.remove('ring-2', 'ring-red-500', 'bg-red-50/70');
+                        }, 3000);
+                    }
+                }
+                showToast(`Vui lòng hoàn thành: ${firstMissing.label}`, 'warning');
+                return;
+            }
+
+            // 2. Collect form data
             const formData = new FormData(form);
             const payload = {};
 
-            // Handle multi-value fields (checkboxes) and single values
             formData.forEach((value, key) => {
                 if (payload[key]) {
                     if (!Array.isArray(payload[key])) {
@@ -811,9 +885,9 @@
                 }
             });
 
-            // UI Loading state
+            // 3. UI Loading state
             submitBtn.disabled = true;
-            btnText.textContent = 'Đang xử lý & tạo PDF...';
+            btnText.textContent = 'Đang xử lý & lưu phiếu...';
             btnIcon.className = 'fa-solid fa-spinner fa-spin ml-1';
 
             try {
@@ -860,16 +934,37 @@
                     progressBar.classList.add('bg-green-500');
                     
                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 500);
+                    showToast('Gửi phiếu khảo sát thành công!', 'success');
+                }, 400);
 
             } catch (err) {
                 console.error('Submit error:', err);
-                alert('Không thể gửi phiếu khảo sát: ' + err.message + '\nVui lòng thử lại!');
+                showToast('Không thể gửi phiếu: ' + err.message, 'error');
                 submitBtn.disabled = false;
                 btnText.textContent = 'Gửi phiếu khảo sát';
                 btnIcon.className = 'fa-solid fa-paper-plane ml-1';
             }
         });
+
+        // Helper function for quick testing in browser console: window.fillSample()
+        window.fillSample = function() {
+            const form = document.getElementById('survey-form');
+            if (!form) return;
+            const names = new Set();
+            form.querySelectorAll('input[type="radio"]').forEach(r => names.add(r.name));
+            names.forEach(name => {
+                const radios = form.querySelectorAll(`input[name="${name}"]`);
+                if (radios.length > 0) {
+                    // select standard satisfied option (e.g. 3, 4 or 5)
+                    const last = radios[radios.length - 1];
+                    last.checked = true;
+                }
+            });
+            form.querySelectorAll('input[type="checkbox"]').forEach((cb, idx) => {
+                if (idx < 2) cb.checked = true;
+            });
+            showToast('Đã tự động điền mẫu câu trả lời thử nghiệm!', 'info');
+        };
     </script>
 </body>
 </html>
