@@ -1,0 +1,874 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" fill="none">
+  <defs>
+    <style>
+      .ds-line { stroke: #b91c1c; stroke-width: 1.6; fill: none; opacity: 0.85; }
+      .ds-bold { stroke: #b91c1c; stroke-width: 2.8; fill: none; opacity: 0.95; }
+      .ds-fill { fill: #b91c1c; stroke: none; opacity: 0.85; }
+    </style>
+  </defs>
+  <!-- Center 14-point Sun Star -->
+  <polygon points="500.00,365.00 511.13,451.25 558.57,378.37 531.17,460.91 605.55,415.83 545.05,478.31 631.62,469.96 550.00,500.00 631.62,530.04 545.05,521.69 605.55,584.17 531.17,539.09 558.57,621.63 511.13,548.75 500.00,635.00 488.87,548.75 441.43,621.63 468.83,539.09 394.45,584.17 454.95,521.69 368.38,530.04 450.00,500.00 368.38,469.96 454.95,478.31 394.45,415.83 468.83,460.91 441.43,378.37 488.87,451.25" class="ds-bold" fill="rgba(185, 28, 28, 0.08)" />
+  <polyline points="511.13,451.25 555.65,384.45 531.17,460.91" class="ds-line" />
+  <polyline points="531.17,460.91 600.27,420.04 545.05,478.31" class="ds-line" />
+  <polyline points="545.05,478.31 625.03,471.46 550.00,500.00" class="ds-line" />
+  <polyline points="550.00,500.00 625.03,528.54 545.05,521.69" class="ds-line" />
+  <polyline points="545.05,521.69 600.27,579.96 531.17,539.09" class="ds-line" />
+  <polyline points="531.17,539.09 555.65,615.55 511.13,548.75" class="ds-line" />
+  <polyline points="511.13,548.75 500.00,628.25 488.87,548.75" class="ds-line" />
+  <polyline points="488.87,548.75 444.35,615.55 468.83,539.09" class="ds-line" />
+  <polyline points="468.83,539.09 399.73,579.96 454.95,521.69" class="ds-line" />
+  <polyline points="454.95,521.69 374.97,528.54 450.00,500.00" class="ds-line" />
+  <polyline points="450.00,500.00 374.97,471.46 454.95,478.31" class="ds-line" />
+  <polyline points="454.95,478.31 399.73,420.04 468.83,460.91" class="ds-line" />
+  <polyline points="468.83,460.91 444.35,384.45 488.87,451.25" class="ds-line" />
+  <polyline points="488.87,451.25 500.00,371.75 511.13,451.25" class="ds-line" />
+  <circle cx="500" cy="500" r="145" class="ds-line" />
+  <circle cx="500" cy="500" r="155" class="ds-line" />
+  <circle cx="500" cy="500" r="180" class="ds-line" />
+  <circle cx="500" cy="500" r="195" class="ds-line" />
+  <circle cx="500" cy="500" r="225" class="ds-line" />
+  <circle cx="500" cy="500" r="240" class="ds-line" />
+  <circle cx="500" cy="500" r="280" class="ds-line" />
+  <circle cx="500" cy="500" r="295" class="ds-line" />
+  <circle cx="500" cy="500" r="345" class="ds-line" />
+  <circle cx="500" cy="500" r="365" class="ds-line" />
+  <circle cx="500" cy="500" r="415" class="ds-line" />
+  <circle cx="500" cy="500" r="435" class="ds-line" />
+  <circle cx="500" cy="500" r="470" class="ds-line" />
+  <circle cx="500" cy="500" r="485" class="ds-line" />
+  <circle cx="667.50" cy="500.00" r="2" class="ds-fill" />
+  <circle cx="666.83" cy="515.01" r="2" class="ds-fill" />
+  <circle cx="664.81" cy="529.91" r="2" class="ds-fill" />
+  <circle cx="661.46" cy="544.56" r="2" class="ds-fill" />
+  <circle cx="656.82" cy="558.86" r="2" class="ds-fill" />
+  <circle cx="650.91" cy="572.68" r="2" class="ds-fill" />
+  <circle cx="643.79" cy="585.91" r="2" class="ds-fill" />
+  <circle cx="635.51" cy="598.45" r="2" class="ds-fill" />
+  <circle cx="626.14" cy="610.20" r="2" class="ds-fill" />
+  <circle cx="615.75" cy="621.07" r="2" class="ds-fill" />
+  <circle cx="604.43" cy="630.96" r="2" class="ds-fill" />
+  <circle cx="592.28" cy="639.79" r="2" class="ds-fill" />
+  <circle cx="579.37" cy="647.50" r="2" class="ds-fill" />
+  <circle cx="565.83" cy="654.02" r="2" class="ds-fill" />
+  <circle cx="551.76" cy="659.30" r="2" class="ds-fill" />
+  <circle cx="537.27" cy="663.30" r="2" class="ds-fill" />
+  <circle cx="522.48" cy="665.98" r="2" class="ds-fill" />
+  <circle cx="507.51" cy="667.33" r="2" class="ds-fill" />
+  <circle cx="492.49" cy="667.33" r="2" class="ds-fill" />
+  <circle cx="477.52" cy="665.98" r="2" class="ds-fill" />
+  <circle cx="462.73" cy="663.30" r="2" class="ds-fill" />
+  <circle cx="448.24" cy="659.30" r="2" class="ds-fill" />
+  <circle cx="434.17" cy="654.02" r="2" class="ds-fill" />
+  <circle cx="420.63" cy="647.50" r="2" class="ds-fill" />
+  <circle cx="407.72" cy="639.79" r="2" class="ds-fill" />
+  <circle cx="395.57" cy="630.96" r="2" class="ds-fill" />
+  <circle cx="384.25" cy="621.07" r="2" class="ds-fill" />
+  <circle cx="373.86" cy="610.20" r="2" class="ds-fill" />
+  <circle cx="364.49" cy="598.45" r="2" class="ds-fill" />
+  <circle cx="356.21" cy="585.91" r="2" class="ds-fill" />
+  <circle cx="349.09" cy="572.68" r="2" class="ds-fill" />
+  <circle cx="343.18" cy="558.86" r="2" class="ds-fill" />
+  <circle cx="338.54" cy="544.56" r="2" class="ds-fill" />
+  <circle cx="335.19" cy="529.91" r="2" class="ds-fill" />
+  <circle cx="333.17" cy="515.01" r="2" class="ds-fill" />
+  <circle cx="332.50" cy="500.00" r="2" class="ds-fill" />
+  <circle cx="333.17" cy="484.99" r="2" class="ds-fill" />
+  <circle cx="335.19" cy="470.09" r="2" class="ds-fill" />
+  <circle cx="338.54" cy="455.44" r="2" class="ds-fill" />
+  <circle cx="343.18" cy="441.14" r="2" class="ds-fill" />
+  <circle cx="349.09" cy="427.32" r="2" class="ds-fill" />
+  <circle cx="356.21" cy="414.09" r="2" class="ds-fill" />
+  <circle cx="364.49" cy="401.55" r="2" class="ds-fill" />
+  <circle cx="373.86" cy="389.80" r="2" class="ds-fill" />
+  <circle cx="384.25" cy="378.93" r="2" class="ds-fill" />
+  <circle cx="395.57" cy="369.04" r="2" class="ds-fill" />
+  <circle cx="407.72" cy="360.21" r="2" class="ds-fill" />
+  <circle cx="420.63" cy="352.50" r="2" class="ds-fill" />
+  <circle cx="434.17" cy="345.98" r="2" class="ds-fill" />
+  <circle cx="448.24" cy="340.70" r="2" class="ds-fill" />
+  <circle cx="462.73" cy="336.70" r="2" class="ds-fill" />
+  <circle cx="477.52" cy="334.02" r="2" class="ds-fill" />
+  <circle cx="492.49" cy="332.67" r="2" class="ds-fill" />
+  <circle cx="507.51" cy="332.67" r="2" class="ds-fill" />
+  <circle cx="522.48" cy="334.02" r="2" class="ds-fill" />
+  <circle cx="537.27" cy="336.70" r="2" class="ds-fill" />
+  <circle cx="551.76" cy="340.70" r="2" class="ds-fill" />
+  <circle cx="565.83" cy="345.98" r="2" class="ds-fill" />
+  <circle cx="579.37" cy="352.50" r="2" class="ds-fill" />
+  <circle cx="592.28" cy="360.21" r="2" class="ds-fill" />
+  <circle cx="604.43" cy="369.04" r="2" class="ds-fill" />
+  <circle cx="615.75" cy="378.93" r="2" class="ds-fill" />
+  <circle cx="626.14" cy="389.80" r="2" class="ds-fill" />
+  <circle cx="635.51" cy="401.55" r="2" class="ds-fill" />
+  <circle cx="643.79" cy="414.09" r="2" class="ds-fill" />
+  <circle cx="650.91" cy="427.32" r="2" class="ds-fill" />
+  <circle cx="656.82" cy="441.14" r="2" class="ds-fill" />
+  <circle cx="661.46" cy="455.44" r="2" class="ds-fill" />
+  <circle cx="664.81" cy="470.09" r="2" class="ds-fill" />
+  <circle cx="666.83" cy="484.99" r="2" class="ds-fill" />
+  <circle cx="710.00" cy="500.00" r="6" class="ds-line" />
+  <circle cx="710.00" cy="500.00" r="1.8" class="ds-fill" />
+  <circle cx="707.65" cy="531.30" r="6" class="ds-line" />
+  <circle cx="707.65" cy="531.30" r="1.8" class="ds-fill" />
+  <circle cx="700.67" cy="561.90" r="6" class="ds-line" />
+  <circle cx="700.67" cy="561.90" r="1.8" class="ds-fill" />
+  <circle cx="689.20" cy="591.12" r="6" class="ds-line" />
+  <circle cx="689.20" cy="591.12" r="1.8" class="ds-fill" />
+  <circle cx="673.51" cy="618.30" r="6" class="ds-line" />
+  <circle cx="673.51" cy="618.30" r="1.8" class="ds-fill" />
+  <circle cx="653.94" cy="642.84" r="6" class="ds-line" />
+  <circle cx="653.94" cy="642.84" r="1.8" class="ds-fill" />
+  <circle cx="630.93" cy="664.18" r="6" class="ds-line" />
+  <circle cx="630.93" cy="664.18" r="1.8" class="ds-fill" />
+  <circle cx="605.00" cy="681.87" r="6" class="ds-line" />
+  <circle cx="605.00" cy="681.87" r="1.8" class="ds-fill" />
+  <circle cx="576.72" cy="695.48" r="6" class="ds-line" />
+  <circle cx="576.72" cy="695.48" r="1.8" class="ds-fill" />
+  <circle cx="546.73" cy="704.73" r="6" class="ds-line" />
+  <circle cx="546.73" cy="704.73" r="1.8" class="ds-fill" />
+  <circle cx="515.69" cy="709.41" r="6" class="ds-line" />
+  <circle cx="515.69" cy="709.41" r="1.8" class="ds-fill" />
+  <circle cx="484.31" cy="709.41" r="6" class="ds-line" />
+  <circle cx="484.31" cy="709.41" r="1.8" class="ds-fill" />
+  <circle cx="453.27" cy="704.73" r="6" class="ds-line" />
+  <circle cx="453.27" cy="704.73" r="1.8" class="ds-fill" />
+  <circle cx="423.28" cy="695.48" r="6" class="ds-line" />
+  <circle cx="423.28" cy="695.48" r="1.8" class="ds-fill" />
+  <circle cx="395.00" cy="681.87" r="6" class="ds-line" />
+  <circle cx="395.00" cy="681.87" r="1.8" class="ds-fill" />
+  <circle cx="369.07" cy="664.18" r="6" class="ds-line" />
+  <circle cx="369.07" cy="664.18" r="1.8" class="ds-fill" />
+  <circle cx="346.06" cy="642.84" r="6" class="ds-line" />
+  <circle cx="346.06" cy="642.84" r="1.8" class="ds-fill" />
+  <circle cx="326.49" cy="618.30" r="6" class="ds-line" />
+  <circle cx="326.49" cy="618.30" r="1.8" class="ds-fill" />
+  <circle cx="310.80" cy="591.12" r="6" class="ds-line" />
+  <circle cx="310.80" cy="591.12" r="1.8" class="ds-fill" />
+  <circle cx="299.33" cy="561.90" r="6" class="ds-line" />
+  <circle cx="299.33" cy="561.90" r="1.8" class="ds-fill" />
+  <circle cx="292.35" cy="531.30" r="6" class="ds-line" />
+  <circle cx="292.35" cy="531.30" r="1.8" class="ds-fill" />
+  <circle cx="290.00" cy="500.00" r="6" class="ds-line" />
+  <circle cx="290.00" cy="500.00" r="1.8" class="ds-fill" />
+  <circle cx="292.35" cy="468.70" r="6" class="ds-line" />
+  <circle cx="292.35" cy="468.70" r="1.8" class="ds-fill" />
+  <circle cx="299.33" cy="438.10" r="6" class="ds-line" />
+  <circle cx="299.33" cy="438.10" r="1.8" class="ds-fill" />
+  <circle cx="310.80" cy="408.88" r="6" class="ds-line" />
+  <circle cx="310.80" cy="408.88" r="1.8" class="ds-fill" />
+  <circle cx="326.49" cy="381.70" r="6" class="ds-line" />
+  <circle cx="326.49" cy="381.70" r="1.8" class="ds-fill" />
+  <circle cx="346.06" cy="357.16" r="6" class="ds-line" />
+  <circle cx="346.06" cy="357.16" r="1.8" class="ds-fill" />
+  <circle cx="369.07" cy="335.82" r="6" class="ds-line" />
+  <circle cx="369.07" cy="335.82" r="1.8" class="ds-fill" />
+  <circle cx="395.00" cy="318.13" r="6" class="ds-line" />
+  <circle cx="395.00" cy="318.13" r="1.8" class="ds-fill" />
+  <circle cx="423.28" cy="304.52" r="6" class="ds-line" />
+  <circle cx="423.28" cy="304.52" r="1.8" class="ds-fill" />
+  <circle cx="453.27" cy="295.27" r="6" class="ds-line" />
+  <circle cx="453.27" cy="295.27" r="1.8" class="ds-fill" />
+  <circle cx="484.31" cy="290.59" r="6" class="ds-line" />
+  <circle cx="484.31" cy="290.59" r="1.8" class="ds-fill" />
+  <circle cx="515.69" cy="290.59" r="6" class="ds-line" />
+  <circle cx="515.69" cy="290.59" r="1.8" class="ds-fill" />
+  <circle cx="546.73" cy="295.27" r="6" class="ds-line" />
+  <circle cx="546.73" cy="295.27" r="1.8" class="ds-fill" />
+  <circle cx="576.72" cy="304.52" r="6" class="ds-line" />
+  <circle cx="576.72" cy="304.52" r="1.8" class="ds-fill" />
+  <circle cx="605.00" cy="318.13" r="6" class="ds-line" />
+  <circle cx="605.00" cy="318.13" r="1.8" class="ds-fill" />
+  <circle cx="630.93" cy="335.82" r="6" class="ds-line" />
+  <circle cx="630.93" cy="335.82" r="1.8" class="ds-fill" />
+  <circle cx="653.94" cy="357.16" r="6" class="ds-line" />
+  <circle cx="653.94" cy="357.16" r="1.8" class="ds-fill" />
+  <circle cx="673.51" cy="381.70" r="6" class="ds-line" />
+  <circle cx="673.51" cy="381.70" r="1.8" class="ds-fill" />
+  <circle cx="689.20" cy="408.88" r="6" class="ds-line" />
+  <circle cx="689.20" cy="408.88" r="1.8" class="ds-fill" />
+  <circle cx="700.67" cy="438.10" r="6" class="ds-line" />
+  <circle cx="700.67" cy="438.10" r="1.8" class="ds-fill" />
+  <circle cx="707.65" cy="468.70" r="6" class="ds-line" />
+  <circle cx="707.65" cy="468.70" r="1.8" class="ds-fill" />
+  <polyline points="740.00,500.00 779.56,515.70 738.49,526.87" class="ds-line" />
+  <polyline points="738.49,526.87 776.04,546.90 733.98,553.41" class="ds-line" />
+  <polyline points="733.98,553.41 769.06,577.51 726.53,579.27" class="ds-line" />
+  <polyline points="726.53,579.27 758.69,607.15 716.23,604.13" class="ds-line" />
+  <polyline points="716.23,604.13 745.06,635.44 703.21,627.69" class="ds-line" />
+  <polyline points="703.21,627.69 728.36,662.03 687.64,649.64" class="ds-line" />
+  <polyline points="687.64,649.64 708.78,686.58 669.71,669.71" class="ds-line" />
+  <polyline points="669.71,669.71 686.58,708.78 649.64,687.64" class="ds-line" />
+  <polyline points="649.64,687.64 662.03,728.36 627.69,703.21" class="ds-line" />
+  <polyline points="627.69,703.21 635.44,745.06 604.13,716.23" class="ds-line" />
+  <polyline points="604.13,716.23 607.15,758.69 579.27,726.53" class="ds-line" />
+  <polyline points="579.27,726.53 577.51,769.06 553.41,733.98" class="ds-line" />
+  <polyline points="553.41,733.98 546.90,776.04 526.87,738.49" class="ds-line" />
+  <polyline points="526.87,738.49 515.70,779.56 500.00,740.00" class="ds-line" />
+  <polyline points="500.00,740.00 484.30,779.56 473.13,738.49" class="ds-line" />
+  <polyline points="473.13,738.49 453.10,776.04 446.59,733.98" class="ds-line" />
+  <polyline points="446.59,733.98 422.49,769.06 420.73,726.53" class="ds-line" />
+  <polyline points="420.73,726.53 392.85,758.69 395.87,716.23" class="ds-line" />
+  <polyline points="395.87,716.23 364.56,745.06 372.31,703.21" class="ds-line" />
+  <polyline points="372.31,703.21 337.97,728.36 350.36,687.64" class="ds-line" />
+  <polyline points="350.36,687.64 313.42,708.78 330.29,669.71" class="ds-line" />
+  <polyline points="330.29,669.71 291.22,686.58 312.36,649.64" class="ds-line" />
+  <polyline points="312.36,649.64 271.64,662.03 296.79,627.69" class="ds-line" />
+  <polyline points="296.79,627.69 254.94,635.44 283.77,604.13" class="ds-line" />
+  <polyline points="283.77,604.13 241.31,607.15 273.47,579.27" class="ds-line" />
+  <polyline points="273.47,579.27 230.94,577.51 266.02,553.41" class="ds-line" />
+  <polyline points="266.02,553.41 223.96,546.90 261.51,526.87" class="ds-line" />
+  <polyline points="261.51,526.87 220.44,515.70 260.00,500.00" class="ds-line" />
+  <polyline points="260.00,500.00 220.44,484.30 261.51,473.13" class="ds-line" />
+  <polyline points="261.51,473.13 223.96,453.10 266.02,446.59" class="ds-line" />
+  <polyline points="266.02,446.59 230.94,422.49 273.47,420.73" class="ds-line" />
+  <polyline points="273.47,420.73 241.31,392.85 283.77,395.87" class="ds-line" />
+  <polyline points="283.77,395.87 254.94,364.56 296.79,372.31" class="ds-line" />
+  <polyline points="296.79,372.31 271.64,337.97 312.36,350.36" class="ds-line" />
+  <polyline points="312.36,350.36 291.22,313.42 330.29,330.29" class="ds-line" />
+  <polyline points="330.29,330.29 313.42,291.22 350.36,312.36" class="ds-line" />
+  <polyline points="350.36,312.36 337.97,271.64 372.31,296.79" class="ds-line" />
+  <polyline points="372.31,296.79 364.56,254.94 395.87,283.77" class="ds-line" />
+  <polyline points="395.87,283.77 392.85,241.31 420.73,273.47" class="ds-line" />
+  <polyline points="420.73,273.47 422.49,230.94 446.59,266.02" class="ds-line" />
+  <polyline points="446.59,266.02 453.10,223.96 473.13,261.51" class="ds-line" />
+  <polyline points="473.13,261.51 484.30,220.44 500.00,260.00" class="ds-line" />
+  <polyline points="500.00,260.00 515.70,220.44 526.87,261.51" class="ds-line" />
+  <polyline points="526.87,261.51 546.90,223.96 553.41,266.02" class="ds-line" />
+  <polyline points="553.41,266.02 577.51,230.94 579.27,273.47" class="ds-line" />
+  <polyline points="579.27,273.47 607.15,241.31 604.13,283.77" class="ds-line" />
+  <polyline points="604.13,283.77 635.44,254.94 627.69,296.79" class="ds-line" />
+  <polyline points="627.69,296.79 662.03,271.64 649.64,312.36" class="ds-line" />
+  <polyline points="649.64,312.36 686.58,291.22 669.71,330.29" class="ds-line" />
+  <polyline points="669.71,330.29 708.78,313.42 687.64,350.36" class="ds-line" />
+  <polyline points="687.64,350.36 728.36,337.97 703.21,372.31" class="ds-line" />
+  <polyline points="703.21,372.31 745.06,364.56 716.23,395.87" class="ds-line" />
+  <polyline points="716.23,395.87 758.69,392.85 726.53,420.73" class="ds-line" />
+  <polyline points="726.53,420.73 769.06,422.49 733.98,446.59" class="ds-line" />
+  <polyline points="733.98,446.59 776.04,453.10 738.49,473.13" class="ds-line" />
+  <polyline points="738.49,473.13 779.56,484.30 740.00,500.00" class="ds-line" />
+  <g transform="translate(500,500) rotate(90.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(126.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(162.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(198.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(234.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(270.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(306.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(342.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(378.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <g transform="translate(500,500) rotate(414.00)">
+    <!-- Chim Lạc Thân & Mỏ dài -->
+    <path d="M-45,-320 C-20,-335 10,-335 35,-320 C20,-315 5,-313 -10,-317 Z" class="ds-bold" fill="rgba(185, 28, 28, 0.06)" />
+    <path d="M35,-320 Q55,-325 80,-322 Q52,-317 35,-320" class="ds-bold" />
+    <path d="M32,-323 Q42,-335 52,-333" class="ds-line" />
+    <path d="M0,-318 Q-15,-352 -35,-358 Q-20,-340 -5,-322" class="ds-bold" />
+    <path d="M-10,-320 Q-30,-352 -48,-354 Q-32,-338 -18,-322" class="ds-line" />
+    <path d="M-45,-320 Q-70,-323 -95,-317 Q-75,-315 -50,-317" class="ds-bold" />
+    <path d="M-20,-315 Q-40,-300 -55,-297" class="ds-line" />
+  </g>
+  <circle cx="855.00" cy="500.00" r="2" class="ds-fill" />
+  <circle cx="854.64" cy="515.93" r="2" class="ds-fill" />
+  <circle cx="853.57" cy="531.82" r="2" class="ds-fill" />
+  <circle cx="851.79" cy="547.65" r="2" class="ds-fill" />
+  <circle cx="849.30" cy="563.39" r="2" class="ds-fill" />
+  <circle cx="846.10" cy="578.99" r="2" class="ds-fill" />
+  <circle cx="842.21" cy="594.44" r="2" class="ds-fill" />
+  <circle cx="837.63" cy="609.70" r="2" class="ds-fill" />
+  <circle cx="832.36" cy="624.74" r="2" class="ds-fill" />
+  <circle cx="826.43" cy="639.52" r="2" class="ds-fill" />
+  <circle cx="819.84" cy="654.03" r="2" class="ds-fill" />
+  <circle cx="812.61" cy="668.22" r="2" class="ds-fill" />
+  <circle cx="804.75" cy="682.08" r="2" class="ds-fill" />
+  <circle cx="796.27" cy="695.57" r="2" class="ds-fill" />
+  <circle cx="787.20" cy="708.66" r="2" class="ds-fill" />
+  <circle cx="777.55" cy="721.34" r="2" class="ds-fill" />
+  <circle cx="767.34" cy="733.57" r="2" class="ds-fill" />
+  <circle cx="756.59" cy="745.33" r="2" class="ds-fill" />
+  <circle cx="745.33" cy="756.59" r="2" class="ds-fill" />
+  <circle cx="733.57" cy="767.34" r="2" class="ds-fill" />
+  <circle cx="721.34" cy="777.55" r="2" class="ds-fill" />
+  <circle cx="708.66" cy="787.20" r="2" class="ds-fill" />
+  <circle cx="695.57" cy="796.27" r="2" class="ds-fill" />
+  <circle cx="682.08" cy="804.75" r="2" class="ds-fill" />
+  <circle cx="668.22" cy="812.61" r="2" class="ds-fill" />
+  <circle cx="654.03" cy="819.84" r="2" class="ds-fill" />
+  <circle cx="639.52" cy="826.43" r="2" class="ds-fill" />
+  <circle cx="624.74" cy="832.36" r="2" class="ds-fill" />
+  <circle cx="609.70" cy="837.63" r="2" class="ds-fill" />
+  <circle cx="594.44" cy="842.21" r="2" class="ds-fill" />
+  <circle cx="578.99" cy="846.10" r="2" class="ds-fill" />
+  <circle cx="563.39" cy="849.30" r="2" class="ds-fill" />
+  <circle cx="547.65" cy="851.79" r="2" class="ds-fill" />
+  <circle cx="531.82" cy="853.57" r="2" class="ds-fill" />
+  <circle cx="515.93" cy="854.64" r="2" class="ds-fill" />
+  <circle cx="500.00" cy="855.00" r="2" class="ds-fill" />
+  <circle cx="484.07" cy="854.64" r="2" class="ds-fill" />
+  <circle cx="468.18" cy="853.57" r="2" class="ds-fill" />
+  <circle cx="452.35" cy="851.79" r="2" class="ds-fill" />
+  <circle cx="436.61" cy="849.30" r="2" class="ds-fill" />
+  <circle cx="421.01" cy="846.10" r="2" class="ds-fill" />
+  <circle cx="405.56" cy="842.21" r="2" class="ds-fill" />
+  <circle cx="390.30" cy="837.63" r="2" class="ds-fill" />
+  <circle cx="375.26" cy="832.36" r="2" class="ds-fill" />
+  <circle cx="360.48" cy="826.43" r="2" class="ds-fill" />
+  <circle cx="345.97" cy="819.84" r="2" class="ds-fill" />
+  <circle cx="331.78" cy="812.61" r="2" class="ds-fill" />
+  <circle cx="317.92" cy="804.75" r="2" class="ds-fill" />
+  <circle cx="304.43" cy="796.27" r="2" class="ds-fill" />
+  <circle cx="291.34" cy="787.20" r="2" class="ds-fill" />
+  <circle cx="278.66" cy="777.55" r="2" class="ds-fill" />
+  <circle cx="266.43" cy="767.34" r="2" class="ds-fill" />
+  <circle cx="254.67" cy="756.59" r="2" class="ds-fill" />
+  <circle cx="243.41" cy="745.33" r="2" class="ds-fill" />
+  <circle cx="232.66" cy="733.57" r="2" class="ds-fill" />
+  <circle cx="222.45" cy="721.34" r="2" class="ds-fill" />
+  <circle cx="212.80" cy="708.66" r="2" class="ds-fill" />
+  <circle cx="203.73" cy="695.57" r="2" class="ds-fill" />
+  <circle cx="195.25" cy="682.08" r="2" class="ds-fill" />
+  <circle cx="187.39" cy="668.22" r="2" class="ds-fill" />
+  <circle cx="180.16" cy="654.03" r="2" class="ds-fill" />
+  <circle cx="173.57" cy="639.52" r="2" class="ds-fill" />
+  <circle cx="167.64" cy="624.74" r="2" class="ds-fill" />
+  <circle cx="162.37" cy="609.70" r="2" class="ds-fill" />
+  <circle cx="157.79" cy="594.44" r="2" class="ds-fill" />
+  <circle cx="153.90" cy="578.99" r="2" class="ds-fill" />
+  <circle cx="150.70" cy="563.39" r="2" class="ds-fill" />
+  <circle cx="148.21" cy="547.65" r="2" class="ds-fill" />
+  <circle cx="146.43" cy="531.82" r="2" class="ds-fill" />
+  <circle cx="145.36" cy="515.93" r="2" class="ds-fill" />
+  <circle cx="145.00" cy="500.00" r="2" class="ds-fill" />
+  <circle cx="145.36" cy="484.07" r="2" class="ds-fill" />
+  <circle cx="146.43" cy="468.18" r="2" class="ds-fill" />
+  <circle cx="148.21" cy="452.35" r="2" class="ds-fill" />
+  <circle cx="150.70" cy="436.61" r="2" class="ds-fill" />
+  <circle cx="153.90" cy="421.01" r="2" class="ds-fill" />
+  <circle cx="157.79" cy="405.56" r="2" class="ds-fill" />
+  <circle cx="162.37" cy="390.30" r="2" class="ds-fill" />
+  <circle cx="167.64" cy="375.26" r="2" class="ds-fill" />
+  <circle cx="173.57" cy="360.48" r="2" class="ds-fill" />
+  <circle cx="180.16" cy="345.97" r="2" class="ds-fill" />
+  <circle cx="187.39" cy="331.78" r="2" class="ds-fill" />
+  <circle cx="195.25" cy="317.92" r="2" class="ds-fill" />
+  <circle cx="203.73" cy="304.43" r="2" class="ds-fill" />
+  <circle cx="212.80" cy="291.34" r="2" class="ds-fill" />
+  <circle cx="222.45" cy="278.66" r="2" class="ds-fill" />
+  <circle cx="232.66" cy="266.43" r="2" class="ds-fill" />
+  <circle cx="243.41" cy="254.67" r="2" class="ds-fill" />
+  <circle cx="254.67" cy="243.41" r="2" class="ds-fill" />
+  <circle cx="266.43" cy="232.66" r="2" class="ds-fill" />
+  <circle cx="278.66" cy="222.45" r="2" class="ds-fill" />
+  <circle cx="291.34" cy="212.80" r="2" class="ds-fill" />
+  <circle cx="304.43" cy="203.73" r="2" class="ds-fill" />
+  <circle cx="317.92" cy="195.25" r="2" class="ds-fill" />
+  <circle cx="331.78" cy="187.39" r="2" class="ds-fill" />
+  <circle cx="345.97" cy="180.16" r="2" class="ds-fill" />
+  <circle cx="360.48" cy="173.57" r="2" class="ds-fill" />
+  <circle cx="375.26" cy="167.64" r="2" class="ds-fill" />
+  <circle cx="390.30" cy="162.37" r="2" class="ds-fill" />
+  <circle cx="405.56" cy="157.79" r="2" class="ds-fill" />
+  <circle cx="421.01" cy="153.90" r="2" class="ds-fill" />
+  <circle cx="436.61" cy="150.70" r="2" class="ds-fill" />
+  <circle cx="452.35" cy="148.21" r="2" class="ds-fill" />
+  <circle cx="468.18" cy="146.43" r="2" class="ds-fill" />
+  <circle cx="484.07" cy="145.36" r="2" class="ds-fill" />
+  <circle cx="500.00" cy="145.00" r="2" class="ds-fill" />
+  <circle cx="515.93" cy="145.36" r="2" class="ds-fill" />
+  <circle cx="531.82" cy="146.43" r="2" class="ds-fill" />
+  <circle cx="547.65" cy="148.21" r="2" class="ds-fill" />
+  <circle cx="563.39" cy="150.70" r="2" class="ds-fill" />
+  <circle cx="578.99" cy="153.90" r="2" class="ds-fill" />
+  <circle cx="594.44" cy="157.79" r="2" class="ds-fill" />
+  <circle cx="609.70" cy="162.37" r="2" class="ds-fill" />
+  <circle cx="624.74" cy="167.64" r="2" class="ds-fill" />
+  <circle cx="639.52" cy="173.57" r="2" class="ds-fill" />
+  <circle cx="654.03" cy="180.16" r="2" class="ds-fill" />
+  <circle cx="668.22" cy="187.39" r="2" class="ds-fill" />
+  <circle cx="682.08" cy="195.25" r="2" class="ds-fill" />
+  <circle cx="695.57" cy="203.73" r="2" class="ds-fill" />
+  <circle cx="708.66" cy="212.80" r="2" class="ds-fill" />
+  <circle cx="721.34" cy="222.45" r="2" class="ds-fill" />
+  <circle cx="733.57" cy="232.66" r="2" class="ds-fill" />
+  <circle cx="745.33" cy="243.41" r="2" class="ds-fill" />
+  <circle cx="756.59" cy="254.67" r="2" class="ds-fill" />
+  <circle cx="767.34" cy="266.43" r="2" class="ds-fill" />
+  <circle cx="777.55" cy="278.66" r="2" class="ds-fill" />
+  <circle cx="787.20" cy="291.34" r="2" class="ds-fill" />
+  <circle cx="796.27" cy="304.43" r="2" class="ds-fill" />
+  <circle cx="804.75" cy="317.92" r="2" class="ds-fill" />
+  <circle cx="812.61" cy="331.78" r="2" class="ds-fill" />
+  <circle cx="819.84" cy="345.97" r="2" class="ds-fill" />
+  <circle cx="826.43" cy="360.48" r="2" class="ds-fill" />
+  <circle cx="832.36" cy="375.26" r="2" class="ds-fill" />
+  <circle cx="837.63" cy="390.30" r="2" class="ds-fill" />
+  <circle cx="842.21" cy="405.56" r="2" class="ds-fill" />
+  <circle cx="846.10" cy="421.01" r="2" class="ds-fill" />
+  <circle cx="849.30" cy="436.61" r="2" class="ds-fill" />
+  <circle cx="851.79" cy="452.35" r="2" class="ds-fill" />
+  <circle cx="853.57" cy="468.18" r="2" class="ds-fill" />
+  <circle cx="854.64" cy="484.07" r="2" class="ds-fill" />
+  <polyline points="865.00,500.00 914.71,515.52 863.98,527.28" class="ds-line" />
+  <polyline points="863.98,527.28 912.39,546.47 860.92,554.40" class="ds-line" />
+  <polyline points="860.92,554.40 907.77,577.15 855.85,581.22" class="ds-line" />
+  <polyline points="855.85,581.22 900.86,607.41 848.78,607.59" class="ds-line" />
+  <polyline points="848.78,607.59 891.71,637.07 839.77,633.35" class="ds-line" />
+  <polyline points="839.77,633.35 880.37,665.96 828.85,658.37" class="ds-line" />
+  <polyline points="828.85,658.37 866.91,693.92 816.10,682.50" class="ds-line" />
+  <polyline points="816.10,682.50 851.39,720.79 801.58,705.61" class="ds-line" />
+  <polyline points="801.58,705.61 833.91,746.44 785.37,727.57" class="ds-line" />
+  <polyline points="785.37,727.57 814.56,770.70 767.56,748.26" class="ds-line" />
+  <polyline points="767.56,748.26 793.45,793.45 748.26,767.56" class="ds-line" />
+  <polyline points="748.26,767.56 770.70,814.56 727.57,785.37" class="ds-line" />
+  <polyline points="727.57,785.37 746.44,833.91 705.61,801.58" class="ds-line" />
+  <polyline points="705.61,801.58 720.79,851.39 682.50,816.10" class="ds-line" />
+  <polyline points="682.50,816.10 693.92,866.91 658.37,828.85" class="ds-line" />
+  <polyline points="658.37,828.85 665.96,880.37 633.35,839.77" class="ds-line" />
+  <polyline points="633.35,839.77 637.07,891.71 607.59,848.78" class="ds-line" />
+  <polyline points="607.59,848.78 607.41,900.86 581.22,855.85" class="ds-line" />
+  <polyline points="581.22,855.85 577.15,907.77 554.40,860.92" class="ds-line" />
+  <polyline points="554.40,860.92 546.47,912.39 527.28,863.98" class="ds-line" />
+  <polyline points="527.28,863.98 515.52,914.71 500.00,865.00" class="ds-line" />
+  <polyline points="500.00,865.00 484.48,914.71 472.72,863.98" class="ds-line" />
+  <polyline points="472.72,863.98 453.53,912.39 445.60,860.92" class="ds-line" />
+  <polyline points="445.60,860.92 422.85,907.77 418.78,855.85" class="ds-line" />
+  <polyline points="418.78,855.85 392.59,900.86 392.41,848.78" class="ds-line" />
+  <polyline points="392.41,848.78 362.93,891.71 366.65,839.77" class="ds-line" />
+  <polyline points="366.65,839.77 334.04,880.37 341.63,828.85" class="ds-line" />
+  <polyline points="341.63,828.85 306.08,866.91 317.50,816.10" class="ds-line" />
+  <polyline points="317.50,816.10 279.21,851.39 294.39,801.58" class="ds-line" />
+  <polyline points="294.39,801.58 253.56,833.91 272.43,785.37" class="ds-line" />
+  <polyline points="272.43,785.37 229.30,814.56 251.74,767.56" class="ds-line" />
+  <polyline points="251.74,767.56 206.55,793.45 232.44,748.26" class="ds-line" />
+  <polyline points="232.44,748.26 185.44,770.70 214.63,727.57" class="ds-line" />
+  <polyline points="214.63,727.57 166.09,746.44 198.42,705.61" class="ds-line" />
+  <polyline points="198.42,705.61 148.61,720.79 183.90,682.50" class="ds-line" />
+  <polyline points="183.90,682.50 133.09,693.92 171.15,658.37" class="ds-line" />
+  <polyline points="171.15,658.37 119.63,665.96 160.23,633.35" class="ds-line" />
+  <polyline points="160.23,633.35 108.29,637.07 151.22,607.59" class="ds-line" />
+  <polyline points="151.22,607.59 99.14,607.41 144.15,581.22" class="ds-line" />
+  <polyline points="144.15,581.22 92.23,577.15 139.08,554.40" class="ds-line" />
+  <polyline points="139.08,554.40 87.61,546.47 136.02,527.28" class="ds-line" />
+  <polyline points="136.02,527.28 85.29,515.52 135.00,500.00" class="ds-line" />
+  <polyline points="135.00,500.00 85.29,484.48 136.02,472.72" class="ds-line" />
+  <polyline points="136.02,472.72 87.61,453.53 139.08,445.60" class="ds-line" />
+  <polyline points="139.08,445.60 92.23,422.85 144.15,418.78" class="ds-line" />
+  <polyline points="144.15,418.78 99.14,392.59 151.22,392.41" class="ds-line" />
+  <polyline points="151.22,392.41 108.29,362.93 160.23,366.65" class="ds-line" />
+  <polyline points="160.23,366.65 119.63,334.04 171.15,341.63" class="ds-line" />
+  <polyline points="171.15,341.63 133.09,306.08 183.90,317.50" class="ds-line" />
+  <polyline points="183.90,317.50 148.61,279.21 198.42,294.39" class="ds-line" />
+  <polyline points="198.42,294.39 166.09,253.56 214.63,272.43" class="ds-line" />
+  <polyline points="214.63,272.43 185.44,229.30 232.44,251.74" class="ds-line" />
+  <polyline points="232.44,251.74 206.55,206.55 251.74,232.44" class="ds-line" />
+  <polyline points="251.74,232.44 229.30,185.44 272.43,214.63" class="ds-line" />
+  <polyline points="272.43,214.63 253.56,166.09 294.39,198.42" class="ds-line" />
+  <polyline points="294.39,198.42 279.21,148.61 317.50,183.90" class="ds-line" />
+  <polyline points="317.50,183.90 306.08,133.09 341.63,171.15" class="ds-line" />
+  <polyline points="341.63,171.15 334.04,119.63 366.65,160.23" class="ds-line" />
+  <polyline points="366.65,160.23 362.93,108.29 392.41,151.22" class="ds-line" />
+  <polyline points="392.41,151.22 392.59,99.14 418.78,144.15" class="ds-line" />
+  <polyline points="418.78,144.15 422.85,92.23 445.60,139.08" class="ds-line" />
+  <polyline points="445.60,139.08 453.53,87.61 472.72,136.02" class="ds-line" />
+  <polyline points="472.72,136.02 484.48,85.29 500.00,135.00" class="ds-line" />
+  <polyline points="500.00,135.00 515.52,85.29 527.28,136.02" class="ds-line" />
+  <polyline points="527.28,136.02 546.47,87.61 554.40,139.08" class="ds-line" />
+  <polyline points="554.40,139.08 577.15,92.23 581.22,144.15" class="ds-line" />
+  <polyline points="581.22,144.15 607.41,99.14 607.59,151.22" class="ds-line" />
+  <polyline points="607.59,151.22 637.07,108.29 633.35,160.23" class="ds-line" />
+  <polyline points="633.35,160.23 665.96,119.63 658.37,171.15" class="ds-line" />
+  <polyline points="658.37,171.15 693.92,133.09 682.50,183.90" class="ds-line" />
+  <polyline points="682.50,183.90 720.79,148.61 705.61,198.42" class="ds-line" />
+  <polyline points="705.61,198.42 746.44,166.09 727.57,214.63" class="ds-line" />
+  <polyline points="727.57,214.63 770.70,185.44 748.26,232.44" class="ds-line" />
+  <polyline points="748.26,232.44 793.45,206.55 767.56,251.74" class="ds-line" />
+  <polyline points="767.56,251.74 814.56,229.30 785.37,272.43" class="ds-line" />
+  <polyline points="785.37,272.43 833.91,253.56 801.58,294.39" class="ds-line" />
+  <polyline points="801.58,294.39 851.39,279.21 816.10,317.50" class="ds-line" />
+  <polyline points="816.10,317.50 866.91,306.08 828.85,341.63" class="ds-line" />
+  <polyline points="828.85,341.63 880.37,334.04 839.77,366.65" class="ds-line" />
+  <polyline points="839.77,366.65 891.71,362.93 848.78,392.41" class="ds-line" />
+  <polyline points="848.78,392.41 900.86,392.59 855.85,418.78" class="ds-line" />
+  <polyline points="855.85,418.78 907.77,422.85 860.92,445.60" class="ds-line" />
+  <polyline points="860.92,445.60 912.39,453.53 863.98,472.72" class="ds-line" />
+  <polyline points="863.98,472.72 914.71,484.48 865.00,500.00" class="ds-line" />
+  <circle cx="925.00" cy="500.00" r="2" class="ds-fill" />
+  <circle cx="924.74" cy="514.83" r="2" class="ds-fill" />
+  <circle cx="923.96" cy="529.65" r="2" class="ds-fill" />
+  <circle cx="922.67" cy="544.42" r="2" class="ds-fill" />
+  <circle cx="920.86" cy="559.15" r="2" class="ds-fill" />
+  <circle cx="918.54" cy="573.80" r="2" class="ds-fill" />
+  <circle cx="915.71" cy="588.36" r="2" class="ds-fill" />
+  <circle cx="912.38" cy="602.82" r="2" class="ds-fill" />
+  <circle cx="908.54" cy="617.15" r="2" class="ds-fill" />
+  <circle cx="904.20" cy="631.33" r="2" class="ds-fill" />
+  <circle cx="899.37" cy="645.36" r="2" class="ds-fill" />
+  <circle cx="894.05" cy="659.21" r="2" class="ds-fill" />
+  <circle cx="888.26" cy="672.86" r="2" class="ds-fill" />
+  <circle cx="881.99" cy="686.31" r="2" class="ds-fill" />
+  <circle cx="875.25" cy="699.53" r="2" class="ds-fill" />
+  <circle cx="868.06" cy="712.50" r="2" class="ds-fill" />
+  <circle cx="860.42" cy="725.22" r="2" class="ds-fill" />
+  <circle cx="852.34" cy="737.66" r="2" class="ds-fill" />
+  <circle cx="843.83" cy="749.81" r="2" class="ds-fill" />
+  <circle cx="834.90" cy="761.66" r="2" class="ds-fill" />
+  <circle cx="825.57" cy="773.18" r="2" class="ds-fill" />
+  <circle cx="815.84" cy="784.38" r="2" class="ds-fill" />
+  <circle cx="805.72" cy="795.23" r="2" class="ds-fill" />
+  <circle cx="795.23" cy="805.72" r="2" class="ds-fill" />
+  <circle cx="784.38" cy="815.84" r="2" class="ds-fill" />
+  <circle cx="773.18" cy="825.57" r="2" class="ds-fill" />
+  <circle cx="761.66" cy="834.90" r="2" class="ds-fill" />
+  <circle cx="749.81" cy="843.83" r="2" class="ds-fill" />
+  <circle cx="737.66" cy="852.34" r="2" class="ds-fill" />
+  <circle cx="725.22" cy="860.42" r="2" class="ds-fill" />
+  <circle cx="712.50" cy="868.06" r="2" class="ds-fill" />
+  <circle cx="699.53" cy="875.25" r="2" class="ds-fill" />
+  <circle cx="686.31" cy="881.99" r="2" class="ds-fill" />
+  <circle cx="672.86" cy="888.26" r="2" class="ds-fill" />
+  <circle cx="659.21" cy="894.05" r="2" class="ds-fill" />
+  <circle cx="645.36" cy="899.37" r="2" class="ds-fill" />
+  <circle cx="631.33" cy="904.20" r="2" class="ds-fill" />
+  <circle cx="617.15" cy="908.54" r="2" class="ds-fill" />
+  <circle cx="602.82" cy="912.38" r="2" class="ds-fill" />
+  <circle cx="588.36" cy="915.71" r="2" class="ds-fill" />
+  <circle cx="573.80" cy="918.54" r="2" class="ds-fill" />
+  <circle cx="559.15" cy="920.86" r="2" class="ds-fill" />
+  <circle cx="544.42" cy="922.67" r="2" class="ds-fill" />
+  <circle cx="529.65" cy="923.96" r="2" class="ds-fill" />
+  <circle cx="514.83" cy="924.74" r="2" class="ds-fill" />
+  <circle cx="500.00" cy="925.00" r="2" class="ds-fill" />
+  <circle cx="485.17" cy="924.74" r="2" class="ds-fill" />
+  <circle cx="470.35" cy="923.96" r="2" class="ds-fill" />
+  <circle cx="455.58" cy="922.67" r="2" class="ds-fill" />
+  <circle cx="440.85" cy="920.86" r="2" class="ds-fill" />
+  <circle cx="426.20" cy="918.54" r="2" class="ds-fill" />
+  <circle cx="411.64" cy="915.71" r="2" class="ds-fill" />
+  <circle cx="397.18" cy="912.38" r="2" class="ds-fill" />
+  <circle cx="382.85" cy="908.54" r="2" class="ds-fill" />
+  <circle cx="368.67" cy="904.20" r="2" class="ds-fill" />
+  <circle cx="354.64" cy="899.37" r="2" class="ds-fill" />
+  <circle cx="340.79" cy="894.05" r="2" class="ds-fill" />
+  <circle cx="327.14" cy="888.26" r="2" class="ds-fill" />
+  <circle cx="313.69" cy="881.99" r="2" class="ds-fill" />
+  <circle cx="300.47" cy="875.25" r="2" class="ds-fill" />
+  <circle cx="287.50" cy="868.06" r="2" class="ds-fill" />
+  <circle cx="274.78" cy="860.42" r="2" class="ds-fill" />
+  <circle cx="262.34" cy="852.34" r="2" class="ds-fill" />
+  <circle cx="250.19" cy="843.83" r="2" class="ds-fill" />
+  <circle cx="238.34" cy="834.90" r="2" class="ds-fill" />
+  <circle cx="226.82" cy="825.57" r="2" class="ds-fill" />
+  <circle cx="215.62" cy="815.84" r="2" class="ds-fill" />
+  <circle cx="204.77" cy="805.72" r="2" class="ds-fill" />
+  <circle cx="194.28" cy="795.23" r="2" class="ds-fill" />
+  <circle cx="184.16" cy="784.38" r="2" class="ds-fill" />
+  <circle cx="174.43" cy="773.18" r="2" class="ds-fill" />
+  <circle cx="165.10" cy="761.66" r="2" class="ds-fill" />
+  <circle cx="156.17" cy="749.81" r="2" class="ds-fill" />
+  <circle cx="147.66" cy="737.66" r="2" class="ds-fill" />
+  <circle cx="139.58" cy="725.22" r="2" class="ds-fill" />
+  <circle cx="131.94" cy="712.50" r="2" class="ds-fill" />
+  <circle cx="124.75" cy="699.53" r="2" class="ds-fill" />
+  <circle cx="118.01" cy="686.31" r="2" class="ds-fill" />
+  <circle cx="111.74" cy="672.86" r="2" class="ds-fill" />
+  <circle cx="105.95" cy="659.21" r="2" class="ds-fill" />
+  <circle cx="100.63" cy="645.36" r="2" class="ds-fill" />
+  <circle cx="95.80" cy="631.33" r="2" class="ds-fill" />
+  <circle cx="91.46" cy="617.15" r="2" class="ds-fill" />
+  <circle cx="87.62" cy="602.82" r="2" class="ds-fill" />
+  <circle cx="84.29" cy="588.36" r="2" class="ds-fill" />
+  <circle cx="81.46" cy="573.80" r="2" class="ds-fill" />
+  <circle cx="79.14" cy="559.15" r="2" class="ds-fill" />
+  <circle cx="77.33" cy="544.42" r="2" class="ds-fill" />
+  <circle cx="76.04" cy="529.65" r="2" class="ds-fill" />
+  <circle cx="75.26" cy="514.83" r="2" class="ds-fill" />
+  <circle cx="75.00" cy="500.00" r="2" class="ds-fill" />
+  <circle cx="75.26" cy="485.17" r="2" class="ds-fill" />
+  <circle cx="76.04" cy="470.35" r="2" class="ds-fill" />
+  <circle cx="77.33" cy="455.58" r="2" class="ds-fill" />
+  <circle cx="79.14" cy="440.85" r="2" class="ds-fill" />
+  <circle cx="81.46" cy="426.20" r="2" class="ds-fill" />
+  <circle cx="84.29" cy="411.64" r="2" class="ds-fill" />
+  <circle cx="87.62" cy="397.18" r="2" class="ds-fill" />
+  <circle cx="91.46" cy="382.85" r="2" class="ds-fill" />
+  <circle cx="95.80" cy="368.67" r="2" class="ds-fill" />
+  <circle cx="100.63" cy="354.64" r="2" class="ds-fill" />
+  <circle cx="105.95" cy="340.79" r="2" class="ds-fill" />
+  <circle cx="111.74" cy="327.14" r="2" class="ds-fill" />
+  <circle cx="118.01" cy="313.69" r="2" class="ds-fill" />
+  <circle cx="124.75" cy="300.47" r="2" class="ds-fill" />
+  <circle cx="131.94" cy="287.50" r="2" class="ds-fill" />
+  <circle cx="139.58" cy="274.78" r="2" class="ds-fill" />
+  <circle cx="147.66" cy="262.34" r="2" class="ds-fill" />
+  <circle cx="156.17" cy="250.19" r="2" class="ds-fill" />
+  <circle cx="165.10" cy="238.34" r="2" class="ds-fill" />
+  <circle cx="174.43" cy="226.82" r="2" class="ds-fill" />
+  <circle cx="184.16" cy="215.62" r="2" class="ds-fill" />
+  <circle cx="194.28" cy="204.77" r="2" class="ds-fill" />
+  <circle cx="204.77" cy="194.28" r="2" class="ds-fill" />
+  <circle cx="215.62" cy="184.16" r="2" class="ds-fill" />
+  <circle cx="226.82" cy="174.43" r="2" class="ds-fill" />
+  <circle cx="238.34" cy="165.10" r="2" class="ds-fill" />
+  <circle cx="250.19" cy="156.17" r="2" class="ds-fill" />
+  <circle cx="262.34" cy="147.66" r="2" class="ds-fill" />
+  <circle cx="274.78" cy="139.58" r="2" class="ds-fill" />
+  <circle cx="287.50" cy="131.94" r="2" class="ds-fill" />
+  <circle cx="300.47" cy="124.75" r="2" class="ds-fill" />
+  <circle cx="313.69" cy="118.01" r="2" class="ds-fill" />
+  <circle cx="327.14" cy="111.74" r="2" class="ds-fill" />
+  <circle cx="340.79" cy="105.95" r="2" class="ds-fill" />
+  <circle cx="354.64" cy="100.63" r="2" class="ds-fill" />
+  <circle cx="368.67" cy="95.80" r="2" class="ds-fill" />
+  <circle cx="382.85" cy="91.46" r="2" class="ds-fill" />
+  <circle cx="397.18" cy="87.62" r="2" class="ds-fill" />
+  <circle cx="411.64" cy="84.29" r="2" class="ds-fill" />
+  <circle cx="426.20" cy="81.46" r="2" class="ds-fill" />
+  <circle cx="440.85" cy="79.14" r="2" class="ds-fill" />
+  <circle cx="455.58" cy="77.33" r="2" class="ds-fill" />
+  <circle cx="470.35" cy="76.04" r="2" class="ds-fill" />
+  <circle cx="485.17" cy="75.26" r="2" class="ds-fill" />
+  <circle cx="500.00" cy="75.00" r="2" class="ds-fill" />
+  <circle cx="514.83" cy="75.26" r="2" class="ds-fill" />
+  <circle cx="529.65" cy="76.04" r="2" class="ds-fill" />
+  <circle cx="544.42" cy="77.33" r="2" class="ds-fill" />
+  <circle cx="559.15" cy="79.14" r="2" class="ds-fill" />
+  <circle cx="573.80" cy="81.46" r="2" class="ds-fill" />
+  <circle cx="588.36" cy="84.29" r="2" class="ds-fill" />
+  <circle cx="602.82" cy="87.62" r="2" class="ds-fill" />
+  <circle cx="617.15" cy="91.46" r="2" class="ds-fill" />
+  <circle cx="631.33" cy="95.80" r="2" class="ds-fill" />
+  <circle cx="645.36" cy="100.63" r="2" class="ds-fill" />
+  <circle cx="659.21" cy="105.95" r="2" class="ds-fill" />
+  <circle cx="672.86" cy="111.74" r="2" class="ds-fill" />
+  <circle cx="686.31" cy="118.01" r="2" class="ds-fill" />
+  <circle cx="699.53" cy="124.75" r="2" class="ds-fill" />
+  <circle cx="712.50" cy="131.94" r="2" class="ds-fill" />
+  <circle cx="725.22" cy="139.58" r="2" class="ds-fill" />
+  <circle cx="737.66" cy="147.66" r="2" class="ds-fill" />
+  <circle cx="749.81" cy="156.17" r="2" class="ds-fill" />
+  <circle cx="761.66" cy="165.10" r="2" class="ds-fill" />
+  <circle cx="773.18" cy="174.43" r="2" class="ds-fill" />
+  <circle cx="784.38" cy="184.16" r="2" class="ds-fill" />
+  <circle cx="795.23" cy="194.28" r="2" class="ds-fill" />
+  <circle cx="805.72" cy="204.77" r="2" class="ds-fill" />
+  <circle cx="815.84" cy="215.62" r="2" class="ds-fill" />
+  <circle cx="825.57" cy="226.82" r="2" class="ds-fill" />
+  <circle cx="834.90" cy="238.34" r="2" class="ds-fill" />
+  <circle cx="843.83" cy="250.19" r="2" class="ds-fill" />
+  <circle cx="852.34" cy="262.34" r="2" class="ds-fill" />
+  <circle cx="860.42" cy="274.78" r="2" class="ds-fill" />
+  <circle cx="868.06" cy="287.50" r="2" class="ds-fill" />
+  <circle cx="875.25" cy="300.47" r="2" class="ds-fill" />
+  <circle cx="881.99" cy="313.69" r="2" class="ds-fill" />
+  <circle cx="888.26" cy="327.14" r="2" class="ds-fill" />
+  <circle cx="894.05" cy="340.79" r="2" class="ds-fill" />
+  <circle cx="899.37" cy="354.64" r="2" class="ds-fill" />
+  <circle cx="904.20" cy="368.67" r="2" class="ds-fill" />
+  <circle cx="908.54" cy="382.85" r="2" class="ds-fill" />
+  <circle cx="912.38" cy="397.18" r="2" class="ds-fill" />
+  <circle cx="915.71" cy="411.64" r="2" class="ds-fill" />
+  <circle cx="918.54" cy="426.20" r="2" class="ds-fill" />
+  <circle cx="920.86" cy="440.85" r="2" class="ds-fill" />
+  <circle cx="922.67" cy="455.58" r="2" class="ds-fill" />
+  <circle cx="923.96" cy="470.35" r="2" class="ds-fill" />
+  <circle cx="924.74" cy="485.17" r="2" class="ds-fill" />
+  <line x1="935.00" y1="500.00" x2="970.00" y2="500.00" class="ds-line" />
+  <line x1="934.40" y1="522.77" x2="969.36" y2="524.60" class="ds-line" />
+  <line x1="932.62" y1="545.47" x2="967.43" y2="549.13" class="ds-line" />
+  <line x1="929.64" y1="568.05" x2="964.21" y2="573.52" class="ds-line" />
+  <line x1="925.49" y1="590.44" x2="959.73" y2="597.72" class="ds-line" />
+  <line x1="920.18" y1="612.59" x2="953.99" y2="621.64" class="ds-line" />
+  <line x1="913.71" y1="634.42" x2="947.00" y2="645.24" class="ds-line" />
+  <line x1="906.11" y1="655.89" x2="938.78" y2="668.43" class="ds-line" />
+  <line x1="897.39" y1="676.93" x2="929.37" y2="691.17" class="ds-line" />
+  <line x1="887.59" y1="697.49" x2="918.77" y2="713.38" class="ds-line" />
+  <line x1="876.72" y1="717.50" x2="907.03" y2="735.00" class="ds-line" />
+  <line x1="864.82" y1="736.92" x2="894.18" y2="755.98" class="ds-line" />
+  <line x1="851.92" y1="755.69" x2="880.24" y2="776.26" class="ds-line" />
+  <line x1="838.06" y1="773.75" x2="865.26" y2="795.78" class="ds-line" />
+  <line x1="823.27" y1="791.07" x2="849.28" y2="814.49" class="ds-line" />
+  <line x1="807.59" y1="807.59" x2="832.34" y2="832.34" class="ds-line" />
+  <line x1="791.07" y1="823.27" x2="814.49" y2="849.28" class="ds-line" />
+  <line x1="773.75" y1="838.06" x2="795.78" y2="865.26" class="ds-line" />
+  <line x1="755.69" y1="851.92" x2="776.26" y2="880.24" class="ds-line" />
+  <line x1="736.92" y1="864.82" x2="755.98" y2="894.18" class="ds-line" />
+  <line x1="717.50" y1="876.72" x2="735.00" y2="907.03" class="ds-line" />
+  <line x1="697.49" y1="887.59" x2="713.38" y2="918.77" class="ds-line" />
+  <line x1="676.93" y1="897.39" x2="691.17" y2="929.37" class="ds-line" />
+  <line x1="655.89" y1="906.11" x2="668.43" y2="938.78" class="ds-line" />
+  <line x1="634.42" y1="913.71" x2="645.24" y2="947.00" class="ds-line" />
+  <line x1="612.59" y1="920.18" x2="621.64" y2="953.99" class="ds-line" />
+  <line x1="590.44" y1="925.49" x2="597.72" y2="959.73" class="ds-line" />
+  <line x1="568.05" y1="929.64" x2="573.52" y2="964.21" class="ds-line" />
+  <line x1="545.47" y1="932.62" x2="549.13" y2="967.43" class="ds-line" />
+  <line x1="522.77" y1="934.40" x2="524.60" y2="969.36" class="ds-line" />
+  <line x1="500.00" y1="935.00" x2="500.00" y2="970.00" class="ds-line" />
+  <line x1="477.23" y1="934.40" x2="475.40" y2="969.36" class="ds-line" />
+  <line x1="454.53" y1="932.62" x2="450.87" y2="967.43" class="ds-line" />
+  <line x1="431.95" y1="929.64" x2="426.48" y2="964.21" class="ds-line" />
+  <line x1="409.56" y1="925.49" x2="402.28" y2="959.73" class="ds-line" />
+  <line x1="387.41" y1="920.18" x2="378.36" y2="953.99" class="ds-line" />
+  <line x1="365.58" y1="913.71" x2="354.76" y2="947.00" class="ds-line" />
+  <line x1="344.11" y1="906.11" x2="331.57" y2="938.78" class="ds-line" />
+  <line x1="323.07" y1="897.39" x2="308.83" y2="929.37" class="ds-line" />
+  <line x1="302.51" y1="887.59" x2="286.62" y2="918.77" class="ds-line" />
+  <line x1="282.50" y1="876.72" x2="265.00" y2="907.03" class="ds-line" />
+  <line x1="263.08" y1="864.82" x2="244.02" y2="894.18" class="ds-line" />
+  <line x1="244.31" y1="851.92" x2="223.74" y2="880.24" class="ds-line" />
+  <line x1="226.25" y1="838.06" x2="204.22" y2="865.26" class="ds-line" />
+  <line x1="208.93" y1="823.27" x2="185.51" y2="849.28" class="ds-line" />
+  <line x1="192.41" y1="807.59" x2="167.66" y2="832.34" class="ds-line" />
+  <line x1="176.73" y1="791.07" x2="150.72" y2="814.49" class="ds-line" />
+  <line x1="161.94" y1="773.75" x2="134.74" y2="795.78" class="ds-line" />
+  <line x1="148.08" y1="755.69" x2="119.76" y2="776.26" class="ds-line" />
+  <line x1="135.18" y1="736.92" x2="105.82" y2="755.98" class="ds-line" />
+  <line x1="123.28" y1="717.50" x2="92.97" y2="735.00" class="ds-line" />
+  <line x1="112.41" y1="697.49" x2="81.23" y2="713.38" class="ds-line" />
+  <line x1="102.61" y1="676.93" x2="70.63" y2="691.17" class="ds-line" />
+  <line x1="93.89" y1="655.89" x2="61.22" y2="668.43" class="ds-line" />
+  <line x1="86.29" y1="634.42" x2="53.00" y2="645.24" class="ds-line" />
+  <line x1="79.82" y1="612.59" x2="46.01" y2="621.64" class="ds-line" />
+  <line x1="74.51" y1="590.44" x2="40.27" y2="597.72" class="ds-line" />
+  <line x1="70.36" y1="568.05" x2="35.79" y2="573.52" class="ds-line" />
+  <line x1="67.38" y1="545.47" x2="32.57" y2="549.13" class="ds-line" />
+  <line x1="65.60" y1="522.77" x2="30.64" y2="524.60" class="ds-line" />
+  <line x1="65.00" y1="500.00" x2="30.00" y2="500.00" class="ds-line" />
+  <line x1="65.60" y1="477.23" x2="30.64" y2="475.40" class="ds-line" />
+  <line x1="67.38" y1="454.53" x2="32.57" y2="450.87" class="ds-line" />
+  <line x1="70.36" y1="431.95" x2="35.79" y2="426.48" class="ds-line" />
+  <line x1="74.51" y1="409.56" x2="40.27" y2="402.28" class="ds-line" />
+  <line x1="79.82" y1="387.41" x2="46.01" y2="378.36" class="ds-line" />
+  <line x1="86.29" y1="365.58" x2="53.00" y2="354.76" class="ds-line" />
+  <line x1="93.89" y1="344.11" x2="61.22" y2="331.57" class="ds-line" />
+  <line x1="102.61" y1="323.07" x2="70.63" y2="308.83" class="ds-line" />
+  <line x1="112.41" y1="302.51" x2="81.23" y2="286.62" class="ds-line" />
+  <line x1="123.28" y1="282.50" x2="92.97" y2="265.00" class="ds-line" />
+  <line x1="135.18" y1="263.08" x2="105.82" y2="244.02" class="ds-line" />
+  <line x1="148.08" y1="244.31" x2="119.76" y2="223.74" class="ds-line" />
+  <line x1="161.94" y1="226.25" x2="134.74" y2="204.22" class="ds-line" />
+  <line x1="176.73" y1="208.93" x2="150.72" y2="185.51" class="ds-line" />
+  <line x1="192.41" y1="192.41" x2="167.66" y2="167.66" class="ds-line" />
+  <line x1="208.93" y1="176.73" x2="185.51" y2="150.72" class="ds-line" />
+  <line x1="226.25" y1="161.94" x2="204.22" y2="134.74" class="ds-line" />
+  <line x1="244.31" y1="148.08" x2="223.74" y2="119.76" class="ds-line" />
+  <line x1="263.08" y1="135.18" x2="244.02" y2="105.82" class="ds-line" />
+  <line x1="282.50" y1="123.28" x2="265.00" y2="92.97" class="ds-line" />
+  <line x1="302.51" y1="112.41" x2="286.62" y2="81.23" class="ds-line" />
+  <line x1="323.07" y1="102.61" x2="308.83" y2="70.63" class="ds-line" />
+  <line x1="344.11" y1="93.89" x2="331.57" y2="61.22" class="ds-line" />
+  <line x1="365.58" y1="86.29" x2="354.76" y2="53.00" class="ds-line" />
+  <line x1="387.41" y1="79.82" x2="378.36" y2="46.01" class="ds-line" />
+  <line x1="409.56" y1="74.51" x2="402.28" y2="40.27" class="ds-line" />
+  <line x1="431.95" y1="70.36" x2="426.48" y2="35.79" class="ds-line" />
+  <line x1="454.53" y1="67.38" x2="450.87" y2="32.57" class="ds-line" />
+  <line x1="477.23" y1="65.60" x2="475.40" y2="30.64" class="ds-line" />
+  <line x1="500.00" y1="65.00" x2="500.00" y2="30.00" class="ds-line" />
+  <line x1="522.77" y1="65.60" x2="524.60" y2="30.64" class="ds-line" />
+  <line x1="545.47" y1="67.38" x2="549.13" y2="32.57" class="ds-line" />
+  <line x1="568.05" y1="70.36" x2="573.52" y2="35.79" class="ds-line" />
+  <line x1="590.44" y1="74.51" x2="597.72" y2="40.27" class="ds-line" />
+  <line x1="612.59" y1="79.82" x2="621.64" y2="46.01" class="ds-line" />
+  <line x1="634.42" y1="86.29" x2="645.24" y2="53.00" class="ds-line" />
+  <line x1="655.89" y1="93.89" x2="668.43" y2="61.22" class="ds-line" />
+  <line x1="676.93" y1="102.61" x2="691.17" y2="70.63" class="ds-line" />
+  <line x1="697.49" y1="112.41" x2="713.38" y2="81.23" class="ds-line" />
+  <line x1="717.50" y1="123.28" x2="735.00" y2="92.97" class="ds-line" />
+  <line x1="736.92" y1="135.18" x2="755.98" y2="105.82" class="ds-line" />
+  <line x1="755.69" y1="148.08" x2="776.26" y2="119.76" class="ds-line" />
+  <line x1="773.75" y1="161.94" x2="795.78" y2="134.74" class="ds-line" />
+  <line x1="791.07" y1="176.73" x2="814.49" y2="150.72" class="ds-line" />
+  <line x1="807.59" y1="192.41" x2="832.34" y2="167.66" class="ds-line" />
+  <line x1="823.27" y1="208.93" x2="849.28" y2="185.51" class="ds-line" />
+  <line x1="838.06" y1="226.25" x2="865.26" y2="204.22" class="ds-line" />
+  <line x1="851.92" y1="244.31" x2="880.24" y2="223.74" class="ds-line" />
+  <line x1="864.82" y1="263.08" x2="894.18" y2="244.02" class="ds-line" />
+  <line x1="876.72" y1="282.50" x2="907.03" y2="265.00" class="ds-line" />
+  <line x1="887.59" y1="302.51" x2="918.77" y2="286.62" class="ds-line" />
+  <line x1="897.39" y1="323.07" x2="929.37" y2="308.83" class="ds-line" />
+  <line x1="906.11" y1="344.11" x2="938.78" y2="331.57" class="ds-line" />
+  <line x1="913.71" y1="365.58" x2="947.00" y2="354.76" class="ds-line" />
+  <line x1="920.18" y1="387.41" x2="953.99" y2="378.36" class="ds-line" />
+  <line x1="925.49" y1="409.56" x2="959.73" y2="402.28" class="ds-line" />
+  <line x1="929.64" y1="431.95" x2="964.21" y2="426.48" class="ds-line" />
+  <line x1="932.62" y1="454.53" x2="967.43" y2="450.87" class="ds-line" />
+  <line x1="934.40" y1="477.23" x2="969.36" y2="475.40" class="ds-line" />
+  <circle cx="500" cy="500" r="490" class="ds-bold" stroke-width="4" />
+</svg>
