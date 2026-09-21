@@ -1,6 +1,7 @@
 # Hệ thống Khảo sát SIPAS - UBND Phường Tùng Thiện
 
-> Cổng thông tin tiếp nhận khảo sát trực tuyến Chỉ số hài lòng về sự phục vụ hành chính (SIPAS) tại UBND Phường Tùng Thiện - Thị xã Sơn Tây, TP. Hà Nội.  
+> Cổng thông tin tiếp nhận khảo sát trực tuyến Chỉ số hài lòng về sự phục vụ hành chính (SIPAS) tại UBND Phường Tùng Thiện, TP. Hà Nội.  
+> **Địa chỉ:** Số 66 đường Thanh Mỹ, TDP Thanh Mỹ, phường Tùng Thiện, thành phố Hà Nội  
 > **Tên miền chính thức:** `https://khaosat.phuongtungthien.vn`  
 > **Cổng ứng dụng trên VPS:** `Port 3005` (Reverse Proxy qua Nginx)
 

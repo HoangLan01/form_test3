@@ -9,7 +9,7 @@
 ## 1. CÁC CÔNG VIỆC ĐÃ THỰC HIỆN
 
 1. **Thiết kế Mẫu Phiếu In Tóm Tắt Chuẩn Hành Chính (`src/templates/summary-pdf.html`):**
-   - **Bố cục chuẩn:** Tuân thủ thể thức văn bản hành chính Việt Nam (Quốc hiệu Tiêu ngữ, Tên cơ quan cấp trên: UBND Thị xã Sơn Tây, Tên cơ quan ban hành: UBND Phường Tùng Thiện).
+   - **Bố cục chuẩn:** Tuân thủ thể thức văn bản hành chính Việt Nam (Quốc hiệu Tiêu ngữ, Tên cơ quan cấp trên: UBND Thành phố Hà Nội, Tên cơ quan ban hành: UBND Phường Tùng Thiện).
    - **Quy chuẩn trang in:** Khổ giấy A4, canh lề trên/dưới 12mm, trái/phải 12-15mm.
    - **Font chữ:** Times New Roman, hiển thị tiếng Việt sắc nét, chuẩn văn bản nhà nước.
    - **Mã phiếu & Thời gian:** In nổi bật trong khung viền xanh hành chính ở góc trên (`SIPAS-TT-2026-XXXX`).

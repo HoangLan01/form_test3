@@ -58,12 +58,15 @@ async function runTests() {
   console.log(`   - Chế độ: ${sheetResult.isMock ? 'Mock Fallback Mode' : 'Google Cloud Live Mode'}`);
   console.log(`   - Số lượng cột tiêu chuẩn: ${googleSheetService.HEADERS.length} cột`);
 
+  await pdfService.closeBrowser();
   console.log('\n====================================================');
   console.log('🎉 TẤT CẢ CÁC BÀI KIỂM THỬ PHASE 3 ĐÃ VƯỢT QUA (PASSED)');
   console.log('====================================================');
+  process.exit(0);
 }
 
-runTests().catch(err => {
+runTests().catch(async err => {
   console.error('❌ KIỂM THỬ PHASE 3 THẤT BẠI:', err);
+  await pdfService.closeBrowser().catch(() => {});
   process.exit(1);
 });

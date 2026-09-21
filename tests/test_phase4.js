@@ -1,6 +1,7 @@
 const assert = require('assert');
 const http = require('http');
 const app = require('../src/server');
+const pdfService = require('../src/services/pdfService');
 
 const TEST_PORT = 3456;
 
@@ -142,10 +143,13 @@ async function runTests() {
       server.close();
       console.log('🏁 Máy chủ thử nghiệm đã đóng kết nối.');
     }
+    await pdfService.closeBrowser().catch(() => {});
+    process.exit(0);
   }
 }
 
-runTests().catch(err => {
+runTests().catch(async err => {
   console.error('❌ KIỂM THỬ PHASE 4 THẤT BẠI:', err);
+  await pdfService.closeBrowser().catch(() => {});
   process.exit(1);
 });

@@ -218,10 +218,20 @@ async function generateSummaryPdf(mappedData, customFileName) {
   }
 }
 
+async function closeBrowser() {
+  if (sharedBrowser) {
+    try {
+      await sharedBrowser.close();
+    } catch (e) {}
+    sharedBrowser = null;
+  }
+}
+
 module.exports = {
   generateSummaryPdf,
   renderHtmlTemplate,
   warmUp,
   getBrowser,
+  closeBrowser,
   TEMP_PDF_DIR
 };

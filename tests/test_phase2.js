@@ -67,12 +67,15 @@ async function runTests() {
   console.log(`   📂 Đường dẫn: ${pdfResult.filePath}`);
   console.log(`   ⚖️ Dung lượng: ${(stats.size / 1024).toFixed(2)} KB`);
 
+  await pdfService.closeBrowser();
   console.log('\n====================================================');
   console.log('🎉 TẤT CẢ CÁC BÀI KIỂM THỬ PHASE 2 ĐÃ VƯỢT QUA (PASSED)');
   console.log('====================================================');
+  process.exit(0);
 }
 
-runTests().catch(err => {
+runTests().catch(async err => {
   console.error('❌ KIỂM THỬ PHASE 2 THẤT BẠI:', err);
+  await pdfService.closeBrowser().catch(() => {});
   process.exit(1);
 });

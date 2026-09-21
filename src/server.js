@@ -148,7 +148,8 @@ if (require.main === module) {
   app.listen(PORT, async () => {
     console.log(`====================================================`);
     console.log(`🚀 SIPAS Survey Server chạy trên: http://localhost:${PORT}`);
-    console.log(`🏛️ Cơ quan: UBND Phường Tùng Thiện - Thị xã Sơn Tây`);
+    console.log(`🏛️ Cơ quan: UBND Phường Tùng Thiện, Thành phố Hà Nội`);
+    console.log(`📍 Địa chỉ: Số 66 đường Thanh Mỹ, TDP Thanh Mỹ, phường Tùng Thiện, thành phố Hà Nội`);
     console.log(`🌐 Tên miền: https://khaosat.phuongtungthien.vn`);
     console.log(`📋 Mã phiếu hiện tại: ${counterService.getCurrentState().code || 'Sẵn sàng khởi tạo 0001'}`);
     console.log(`====================================================`);
