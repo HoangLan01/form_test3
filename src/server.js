@@ -30,7 +30,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     system: 'Hệ thống Khảo sát SIPAS - UBND Phường Tùng Thiện',
-    domain: 'khaosat.phuongtungthien.vn',
+    domain: 'sipas.phuongtungthien.vn',
     googleAuth: {
       configured: googleAuth.isConfigured(),
       credentials: googleAuth.getCredentialsInfo()
@@ -150,7 +150,7 @@ if (require.main === module) {
     console.log(`🚀 SIPAS Survey Server chạy trên: http://localhost:${PORT}`);
     console.log(`🏛️ Cơ quan: UBND Phường Tùng Thiện, Thành phố Hà Nội`);
     console.log(`📍 Địa chỉ: Số 66 đường Thanh Mỹ, TDP Thanh Mỹ, phường Tùng Thiện, thành phố Hà Nội`);
-    console.log(`🌐 Tên miền: https://khaosat.phuongtungthien.vn`);
+    console.log(`🌐 Tên miền: https://sipas.phuongtungthien.vn`);
     console.log(`📋 Mã phiếu hiện tại: ${counterService.getCurrentState().code || 'Sẵn sàng khởi tạo 0001'}`);
     console.log(`====================================================`);
 

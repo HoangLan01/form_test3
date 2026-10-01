@@ -1,6 +1,6 @@
 # HƯỚNG DẪN TRIỂN KHAI VẬN HÀNH TỪ A-Z (PRODUCTION)
 ## HỆ THỐNG KHẢO SÁT SIPAS - UBND PHƯỜNG TÙNG THIỆN
-**Tên miền:** `khaosat.phuongtungthien.vn` | **Hệ điều hành Server:** Ubuntu Linux
+**Tên miền:** `sipas.phuongtungthien.vn` | **Hệ điều hành Server:** Ubuntu Linux
 
 ---
 
@@ -130,7 +130,7 @@ Nội dung file `.env`:
 ```env
 PORT=3005
 NODE_ENV=production
-DOMAIN=https://khaosat.phuongtungthien.vn
+DOMAIN=https://sipas.phuongtungthien.vn
 
 # Google Cloud Service Account (Google Sheets API)
 GOOGLE_CREDENTIALS_PATH=./credentials.json
@@ -170,18 +170,18 @@ pm2 restart all             # Khởi động lại ứng dụng
 
 ### BƯỚC 6: CẤU HÌNH NGINX & CẤP CHỨNG CHỈ SSL HTTPS
 
-1. Trỏ bản ghi DNS của tên miền `khaosat.phuongtungthien.vn` (Bản ghi `A`) về địa chỉ IP của server Ubuntu `103.90.227.130`.
+1. Trỏ bản ghi DNS của tên miền `sipas.phuongtungthien.vn` (Bản ghi `A`) về địa chỉ IP của server Ubuntu `103.90.227.130`.
 
 2. Cấu hình Nginx:
 ```bash
-sudo nano /etc/nginx/sites-available/khaosat.phuongtungthien.vn
+sudo nano /etc/nginx/sites-available/sipas.phuongtungthien.vn
 ```
 Dán nội dung cấu hình sau:
 ```nginx
 server {
     listen 80;
     listen [::]:80;
-    server_name khaosat.phuongtungthien.vn;
+    server_name sipas.phuongtungthien.vn;
 
     client_max_body_size 20M;
 
@@ -202,14 +202,14 @@ server {
 
 3. Kích hoạt cấu hình Nginx:
 ```bash
-sudo ln -s /etc/nginx/sites-available/khaosat.phuongtungthien.vn /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/sipas.phuongtungthien.vn /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
 
 4. Cấp chứng chỉ bảo mật SSL (HTTPS) miễn phí tự động bằng Certbot:
 ```bash
-sudo certbot --nginx -d khaosat.phuongtungthien.vn
+sudo certbot --nginx -d sipas.phuongtungthien.vn
 ```
 *(Chọn chuyển hướng toàn bộ HTTP sang HTTPS theo gợi ý của Certbot).*
 
@@ -217,7 +217,7 @@ sudo certbot --nginx -d khaosat.phuongtungthien.vn
 
 ### BƯỚC 7: KIỂM TRA & NGHIỆM THU
 
-1. Mở trình duyệt và truy cập: `https://khaosat.phuongtungthien.vn`
+1. Mở trình duyệt và truy cập: `https://sipas.phuongtungthien.vn`
 2. Điền thử 1 phiếu khảo sát và bấm **Gửi phiếu**.
 3. Kiểm tra:
    - Màn hình nhận được mã số: `SIPAS-TT-2026-0001` (hoặc số tiếp theo).

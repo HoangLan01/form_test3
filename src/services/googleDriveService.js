@@ -16,7 +16,7 @@ const googleAuth = require('../config/googleAuth');
 async function uploadPdf(filePath, fileName, code) {
   const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
   const webhookUrl = process.env.GOOGLE_DRIVE_WEBHOOK_URL;
-  const domain = process.env.DOMAIN || 'https://khaosat.phuongtungthien.vn';
+  const domain = process.env.DOMAIN || 'https://sipas.phuongtungthien.vn';
 
   // Cách 1: Sử dụng Google Apps Script Webhook (Tối ưu nhất cho tài khoản Gmail cá nhân)
   if (webhookUrl && webhookUrl.startsWith('http')) {

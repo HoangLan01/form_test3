@@ -14,7 +14,7 @@
    - Tối ưu bộ nhớ (`max_memory_restart: 500M`) và ghi log chi tiết theo ngày giờ (`logs/pm2-out.log`, `logs/pm2-error.log`).
 
 2. **Đóng gói cấu hình Web Server & SSL (`nginx.conf`):**
-   - Thiết lập cấu hình Nginx Reverse Proxy cho domain `khaosat.phuongtungthien.vn`.
+   - Thiết lập cấu hình Nginx Reverse Proxy cho domain `sipas.phuongtungthien.vn`.
    - Chuyển hướng HTTP sang HTTPS bảo mật 100%.
    - Hỗ trợ nén Gzip tăng tốc độ tải trang, cấu hình timeout 60 giây cho việc render PDF.
 

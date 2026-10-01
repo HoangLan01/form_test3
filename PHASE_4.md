@@ -61,5 +61,5 @@
 ## 3. BƯỚC TIẾP THEO: CHUYỂN SANG PHASE 5
 - Đóng gói cấu hình chạy Production trên máy chủ Ubuntu riêng.
 - Tạo file cấu hình quản lý tiến trình `ecosystem.config.js` (PM2).
-- Tạo file cấu hình Web Server & Reverse Proxy `nginx.conf` cho tên miền `khaosat.phuongtungthien.vn` kèm SSL Let's Encrypt.
+- Tạo file cấu hình Web Server & Reverse Proxy `nginx.conf` cho tên miền `sipas.phuongtungthien.vn` kèm SSL Let's Encrypt.
 - Viết tài liệu hướng dẫn vận hành chi tiết từ A-Z: `DEPLOY_GUIDE.md` và `PHASE_5.md`.
