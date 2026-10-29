@@ -113,7 +113,7 @@ function releaseLock() {
 function renderHtmlTemplate(data) {
   let template = getCachedTemplate();
 
-  const now = new Date();
+  const now = data.rawDate || new Date();
   const currentDay = String(now.getDate()).padStart(2, '0');
   const currentMonth = String(now.getMonth() + 1).padStart(2, '0');
   const currentYear = now.getFullYear();

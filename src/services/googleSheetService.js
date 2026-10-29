@@ -168,6 +168,12 @@ async function appendSurveyRow(mappedData, drivePdfLink) {
       isMock: false
     };
   } catch (err) {
+    const isQuota = err.message && (err.message.includes('Quota exceeded') || err.message.includes('RATE_LIMIT_EXCEEDED') || err.code === 429);
+    if (isQuota && retryCount < 3) {
+      console.warn(`⏳ [Google Sheets] Đạt giới hạn quota ghi (${err.message}), tạm dừng 12s rồi tự động thử lại lần ${retryCount + 1}...`);
+      await new Promise(r => setTimeout(r, 12000));
+      return appendSurveyRow(mappedData, drivePdfLink, retryCount + 1);
+    }
     console.error('❌ [Google Sheets] Lỗi khi ghi dòng vào Sheet:', err.message);
     return {
       success: false,

@@ -188,7 +188,8 @@ const Q10_LEVELS = {
  * @returns {Object} Dữ liệu đã xử lý
  */
 function mapSurveyData(raw, code) {
-  const submitTime = new Date().toLocaleString('vi-VN', {
+  const dateObj = raw.custom_date_obj || new Date();
+  const submitTime = raw.custom_submit_time || dateObj.toLocaleString('vi-VN', {
     timeZone: 'Asia/Ho_Chi_Minh',
     hour12: false,
     year: 'numeric',
@@ -304,6 +305,7 @@ function mapSurveyData(raw, code) {
   return {
     code,
     submitTime,
+    rawDate: dateObj,
     personal: {
       gender: raw.gender || 'Chưa chọn',
       ethnicity,
