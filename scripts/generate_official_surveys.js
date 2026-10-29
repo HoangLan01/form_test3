@@ -6,51 +6,22 @@ const googleDriveService = require('../src/services/googleDriveService');
 const googleSheetService = require('../src/services/googleSheetService');
 
 /**
- * Sinh dòng thời gian tăng dần tự nhiên bắt đầu từ sáng ngày hôm nay (08h15)
- * Trải đều qua các ca hợp lý: Sáng (08:10-11:30), Chiều (13:35-16:45), Tối (19:00-21:45)
+ * Sinh dòng thời gian 10 phiếu trực tiếp từ thời điểm chạy lệnh
+ * Tính lùi dần từ lúc bạn gõ lệnh (mỗi phiếu cách nhau ngẫu nhiên 4 - 8 phút)
+ * để phiếu cuối cùng trùng với đúng lúc bạn chạy, không cần phân biệt ca kíp phức tạp.
  */
-function generateTimeline(count, startDate = null) {
-  if (!startDate) {
-    const today = new Date();
-    // Mặc định bắt đầu từ ca sáng ngày hôm nay lúc 08h15
-    startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 8, 15, 0);
-  }
+function generateTimeline(count = 10) {
   const timestamps = [];
-  let current = new Date(startDate.getTime());
+  const now = new Date();
 
-  for (let i = 0; i < count; i++) {
-    if (i === 0) {
-      current.setMinutes(current.getMinutes() + Math.floor(Math.random() * 5));
-    } else {
-      // Mỗi phiếu cách nhau ngẫu nhiên từ 6 đến 18 phút
-      const stepMinutes = Math.floor(Math.random() * 12) + 6;
-      current = new Date(current.getTime() + stepMinutes * 60 * 1000);
-    }
+  // Bắt đầu từ phiếu cuối cùng (thời điểm gõ lệnh) lùi dần về trước
+  let current = new Date(now.getTime());
+  timestamps.unshift(new Date(current.getTime()));
 
-    const hour = current.getHours();
-    const min = current.getMinutes();
-    const timeInMins = hour * 60 + min;
-
-    // Giờ hành chính & Khung giờ trực tuyến:
-    // Sáng: 8:00 - 11:30 (480 - 690)
-    // Chiều: 13:30 - 16:45 (810 - 1005)
-    // Tối: 19:00 - 21:45 (1140 - 1305)
-    if (timeInMins > 1305) {
-      // Sau 21:45 tối -> Nhảy sang 8h10 sáng hôm sau
-      current.setDate(current.getDate() + 1);
-      current.setHours(8, 10 + Math.floor(Math.random() * 15), Math.floor(Math.random() * 60));
-    } else if (timeInMins < 480) {
-      // Trước 8h00 -> Điều chỉnh về 8h10 sáng
-      current.setHours(8, 10 + Math.floor(Math.random() * 15), Math.floor(Math.random() * 60));
-    } else if (timeInMins > 690 && timeInMins < 810) {
-      // Giờ nghỉ trưa (11:30 - 13:30) -> Nhảy sang 13h35 chiều
-      current.setHours(13, 35 + Math.floor(Math.random() * 15), Math.floor(Math.random() * 60));
-    } else if (timeInMins > 1005 && timeInMins < 1140) {
-      // Chiều muộn (16:45 - 19:00) -> Nhảy sang 19h05 tối
-      current.setHours(19, 5 + Math.floor(Math.random() * 15), Math.floor(Math.random() * 60));
-    }
-
-    timestamps.push(new Date(current.getTime()));
+  for (let i = 1; i < count; i++) {
+    const stepMinutes = Math.floor(Math.random() * 5) + 4; // ngẫu nhiên 4 đến 8 phút
+    current = new Date(current.getTime() - stepMinutes * 60 * 1000);
+    timestamps.unshift(new Date(current.getTime()));
   }
 
   return timestamps;
