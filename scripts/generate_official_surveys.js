@@ -6,26 +6,11 @@ const googleDriveService = require('../src/services/googleDriveService');
 const googleSheetService = require('../src/services/googleSheetService');
 
 /**
- * Sinh dòng thời gian 10 phiếu trực tiếp từ thời điểm chạy lệnh
- * Tính lùi dần từ lúc bạn gõ lệnh (mỗi phiếu cách nhau ngẫu nhiên 4 - 8 phút)
- * để phiếu cuối cùng trùng với đúng lúc bạn chạy, không cần phân biệt ca kíp phức tạp.
+ * Chế độ Phương án 3: Sinh phiếu theo thời gian thực (Real-time)
+ * Mỗi phiếu lấy chính xác thời gian thực tế tại thời điểm được tạo (new Date()),
+ * kèm khoảng giãn cách tự nhiên (15 - 25 giây) giữa các phiếu.
+ * Đảm bảo 100% thời gian luôn tăng dần và không bao giờ bị xung đột với người dân thật.
  */
-function generateTimeline(count = 10) {
-  const timestamps = [];
-  const now = new Date();
-
-  // Bắt đầu từ phiếu cuối cùng (thời điểm gõ lệnh) lùi dần về trước
-  let current = new Date(now.getTime());
-  timestamps.unshift(new Date(current.getTime()));
-
-  for (let i = 1; i < count; i++) {
-    const stepMinutes = Math.floor(Math.random() * 5) + 4; // ngẫu nhiên 4 đến 8 phút
-    current = new Date(current.getTime() - stepMinutes * 60 * 1000);
-    timestamps.unshift(new Date(current.getTime()));
-  }
-
-  return timestamps;
-}
 
 /**
  * Sinh ngẫu nhiên dữ liệu 1 phiếu khảo sát theo đúng thể thức và yêu cầu chuẩn
@@ -40,10 +25,36 @@ function generateSingleSurveyRaw(customDateObj) {
   const ages = ['18-24', '25-34', '35-49', '50-60', '>60'];
   const age = ages[Math.floor(Math.random() * ages.length)];
   const gender = Math.random() < 0.52 ? 'Nữ' : 'Nam';
-  const edus = ['2', '3', '4', '5']; // THCS, THPT, Dạy nghề TC/CĐ, Đại học
-  const edu = edus[Math.floor(Math.random() * edus.length)];
-  const jobs = ['1', '3', '5', '6']; // Nghỉ hưu, Tự do, Doanh nghiệp tư nhân, Lĩnh vực công
-  const job = jobs[Math.floor(Math.random() * jobs.length)];
+
+  // Lựa chọn Nghề nghiệp và Trình độ học vấn phù hợp logic theo độ tuổi:
+  let job, edu;
+  if (age === '>60') {
+    // Chỉ nhóm từ 60 tuổi trở lên mới được chọn Nghỉ hưu ('1')
+    const jobsOver60 = ['1', '1', '1', '3', '2']; // 60% Nghỉ hưu, 20% Tự do, 20% Ở nhà
+    job = jobsOver60[Math.floor(Math.random() * jobsOver60.length)];
+    const edusOver60 = ['2', '3', '5']; // THCS, THPT, Đại học
+    edu = edusOver60[Math.floor(Math.random() * edusOver60.length)];
+  } else if (age === '18-24') {
+    // Độ tuổi thanh niên: Sinh viên, làm việc DN tư nhân hoặc lao động tự do
+    const jobs18_24 = ['4', '5', '3']; // Sinh viên ('4'), Doanh nghiệp tư ('5'), Tự do ('3')
+    job = jobs18_24[Math.floor(Math.random() * jobs18_24.length)];
+    edu = job === '4' ? '3' : (Math.random() < 0.6 ? '5' : '4'); // THPT hoặc ĐH/CĐ
+  } else if (age === '25-34') {
+    // Độ tuổi lao động trẻ: Tuyệt đối không nghỉ hưu, đa số làm việc tư nhân hoặc nhà nước
+    const jobs25_34 = ['5', '5', '6', '3']; // DN tư nhân (50%), Công chức/viên chức (25%), Tự do (25%)
+    job = jobs25_34[Math.floor(Math.random() * jobs25_34.length)];
+    edu = Math.random() < 0.75 ? '5' : '4'; // Đa số Đại học hoặc TC/CĐ
+  } else if (age === '35-49') {
+    // Độ tuổi trung niên: Làm việc cơ quan nhà nước, DN tư nhân hoặc tự do
+    const jobs35_49 = ['5', '6', '6', '3'];
+    job = jobs35_49[Math.floor(Math.random() * jobs35_49.length)];
+    edu = Math.random() < 0.8 ? '5' : '3'; // Đại học hoặc THPT
+  } else { // '50-60'
+    // Độ tuổi 50-60: Chưa đủ 60 tuổi nên chưa nghỉ hưu, vẫn đang công tác hoặc làm việc
+    const jobs50_60 = ['5', '6', '6', '3'];
+    job = jobs50_60[Math.floor(Math.random() * jobs50_60.length)];
+    edu = Math.random() < 0.7 ? '5' : '3';
+  }
 
   // Câu 1: Quan tâm chính sách (9 câu) -> Chỉ 3 (Quan tâm) hoặc 4 (Rất quan tâm)
   const q1 = {};
@@ -150,8 +161,7 @@ async function run() {
   const startTime = Date.now();
   let successCount = 0;
 
-  // Tạo dòng thời gian tăng dần tự nhiên bắt đầu từ sáng hôm nay (08h15)
-  const timeline = generateTimeline(targetCount);
+  // Sử dụng thời gian thực tế (Real-time) cho từng phiếu
 
   for (let i = 1; i <= targetCount; i++) {
     const loopStart = Date.now();
@@ -160,7 +170,7 @@ async function run() {
       const { code } = await counterService.getNextCode();
 
       // 2. Tạo dữ liệu khảo sát theo chuẩn (kèm mốc thời gian tự nhiên)
-      const currentTimestamp = timeline[i - 1];
+      const currentTimestamp = new Date();
       const rawData = generateSingleSurveyRaw(currentTimestamp);
       const mappedData = surveyMapper.mapSurveyData(rawData, code);
 
@@ -185,10 +195,11 @@ async function run() {
         console.warn(`[${i}/${targetCount}] ⚠️ Lỗi ghi dữ liệu cho mã ${code}: ${sheetResult?.error || 'Không xác định'}`);
       }
 
-      // Nghỉ giãn cách nhỏ giữa các lần (1100ms khi bỏ qua PDF, 400ms khi có PDF)
-      const delayMs = skipPdf ? 1100 : 400;
+      // Giãn cách tự nhiên giữa các phiếu (15 - 25 giây) mô phỏng người tiếp theo nộp tại quầy
       if (i < targetCount) {
-        await new Promise(r => setTimeout(r, delayMs));
+        const delaySeconds = Math.floor(Math.random() * 11) + 15; // 15 đến 25 giây
+        console.log(`   ⏳ Nghỉ ${delaySeconds}s (mô phỏng người tiếp theo hoàn thành nộp form)...\n`);
+        await new Promise(r => setTimeout(r, delaySeconds * 1000));
       }
     } catch (err) {
       console.error(`❌ Lỗi tại lượt thứ ${i}:`, err.message);
@@ -217,8 +228,6 @@ if (require.main === module) {
 }
 
 module.exports = {
-  generateTimeline,
   generateSingleSurveyRaw,
   run
 };
-
