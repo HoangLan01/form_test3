@@ -140,8 +140,12 @@ function generateSingleSurveyRaw(customDateObj) {
 
 async function run() {
   const args = process.argv.slice(2);
-  // Cố định chính xác 10 phiếu mỗi lần chạy lệnh, không hơn không kém
-  const targetCount = 10;
+  // Mặc định 10 phiếu mỗi lần chạy lệnh (có thể truyền cờ --count để tùy chỉnh khi test)
+  let targetCount = 10;
+  const countIdx = args.indexOf('--count');
+  if (countIdx !== -1 && args[countIdx + 1]) {
+    targetCount = parseInt(args[countIdx + 1], 10) || 10;
+  }
   const skipPdf = args.includes('--no-pdf');
 
   console.log('====================================================');
