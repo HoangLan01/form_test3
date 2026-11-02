@@ -59,7 +59,7 @@ function generateSingleSurveyRaw(customDateObj) {
   // Câu 1: Quan tâm chính sách (9 câu) -> Chỉ 3 (Quan tâm) hoặc 4 (Rất quan tâm)
   const q1 = {};
   for (let i = 1; i <= 9; i++) {
-    q1[`q1_${i}`] = Math.random() < 0.65 ? '4' : '3';
+    q1[`q1_${i}`] = '4';
   }
 
   // Câu 2: Kênh theo dõi (chọn kết hợp 2-3 kênh thực tế tại phường)
@@ -71,13 +71,12 @@ function generateSingleSurveyRaw(customDateObj) {
   // Câu 3: Mức độ phù hợp kênh (7 câu) -> Chỉ 3 (Phù hợp) hoặc 4 (Rất phù hợp)
   const q3 = {};
   for (let i = 1; i <= 7; i++) {
-    q3[`q3_${i}`] = Math.random() < 0.6 ? '4' : '3';
+    q3[`q3_${i}`] = '4';
   }
 
   // Câu 4: Dự định tham gia góp ý
   // 1: Bất kỳ hình thức nào, 2: Gửi phiếu, 3: Cuộc họp cư dân, 4: Trực tuyến
-  const q4Options = ['1', '4', '4', '1', '3', '2'];
-  const q4 = q4Options[Math.floor(Math.random() * q4Options.length)];
+  const q4 = '1'; // Mức cao nhất: Tham gia đóng góp ý kiến dưới bất kỳ hình thức nào
 
   // Câu 5: Phiền hà -> 100% là 1 (Không có công chức nào gây phiền hà)
   const q5 = '1';
@@ -87,9 +86,9 @@ function generateSingleSurveyRaw(customDateObj) {
 
   // Câu 7: Hình thức TTHC phù hợp (3 câu) -> Chỉ 3 hoặc 4
   const q7 = {
-    q7_1: Math.random() < 0.5 ? '4' : '3',
-    q7_2: Math.random() < 0.7 ? '4' : '3', // Trực tuyến toàn trình
-    q7_3: Math.random() < 0.6 ? '4' : '3'
+    q7_1: '4',
+    q7_2: '4', // Trực tuyến toàn trình
+    q7_3: '4'
   };
 
   // Câu 8: Trải nghiệm thực tế (7 câu)
@@ -106,13 +105,13 @@ function generateSingleSurveyRaw(customDateObj) {
   // Câu 9: 39 tiêu chí hài lòng -> Chỉ gồm 4 (Hài lòng) hoặc 5 (Rất hài lòng)
   const q9 = {};
   for (let i = 1; i <= 39; i++) {
-    q9[`q9_sat_${i}`] = Math.random() < 0.7 ? '5' : '4';
+    q9[`q9_sat_${i}`] = '5';
   }
 
   // Câu 10: Mong muốn cải thiện (10 câu) -> Chỉ 3 (Mong muốn) hoặc 4 (Rất mong muốn)
   const q10 = {};
   for (let i = 1; i <= 10; i++) {
-    q10[`q10_${i}`] = Math.random() < 0.65 ? '4' : '3';
+    q10[`q10_${i}`] = '4';
   }
 
   return {
